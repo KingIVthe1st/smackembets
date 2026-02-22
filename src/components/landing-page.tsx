@@ -6,6 +6,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckoutButton } from "@/components/checkout-button";
+import { HeroNodeNetwork } from "@/components/hero-node-network";
+import { FlowingWaves } from "@/components/flowing-waves";
+import { HexGridOverlay } from "@/components/hex-grid-overlay";
 
 const stats = [
   { n: "835+", l: "Games Trained", sub: "Retrains nightly at 5am UTC" },
@@ -41,81 +44,89 @@ export function LandingPage() {
         </div>
       </nav>
 
-      <section className="relative overflow-hidden px-4 pb-24 pt-28">
-        <div className="pointer-events-none absolute inset-x-0 top-24 z-0 mx-auto h-36 max-w-4xl animate-wave-drift opacity-50">
-          <svg viewBox="0 0 1200 180" className="h-full w-full blur-[2px]">
-            <path d="M0 90 C180 20, 320 150, 520 90 C700 35, 860 150, 1200 80" stroke="#00F0FF" strokeWidth="3" fill="none" />
-            <path d="M0 110 C180 140, 280 50, 500 100 C700 140, 900 40, 1200 120" stroke="#10B981" strokeWidth="2" fill="none" />
-          </svg>
-        </div>
+      <section className="relative overflow-hidden px-4 pb-32 pt-28 min-h-[900px]">
+        {/* Background elements */}
+        <HexGridOverlay />
+        <HeroNodeNetwork />
+        <FlowingWaves />
 
-        <div className="relative z-10 mx-auto max-w-5xl text-center">
+        <div className="relative z-10 mx-auto max-w-6xl text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[clamp(40px,5vw,64px)] font-black uppercase leading-[1.05] tracking-tight"
+            className="text-[clamp(36px,5vw,56px)] font-extrabold uppercase leading-[1.15] tracking-tight text-white"
           >
-            <span className="bg-gradient-to-r from-accent-cyan via-white to-accent-green bg-clip-text text-transparent">
-              THE EDGE HEDGE FUNDS USE
-            </span>
+            OUTSMART THE SPORTSBOOKS
             <br />
-            <span className="text-white">APPLIED TO SPORTS</span>
+            WITH MACHINE LEARNING
           </motion.h1>
-          <p className="mx-auto mt-6 max-w-2xl text-xl font-medium text-white/90">
-            Not opinions. Not guesses. <span className="text-accent-cyan font-bold">37 data points per game</span>, 
-            dual-engine AI (XGBoost + Elo), and <span className="text-accent-green font-bold">verified 68.3% accuracy</span> 
-            across 835+ NBA games — retraining every night at 5am UTC.
-          </p>
-          <p className="mx-auto mt-3 max-w-xl text-base text-text-muted">
-            Same quantitative edge institutional traders use in financial markets. 
-            Live injury tracking. Travel fatigue quantified in points. Market vs. model edge calculated to 0.1%. 
-            Only picks with 5%+ edge make it to your inbox.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <CheckoutButton className="text-lg px-8 py-4 shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)]" />
-            <a href="#sample" className="text-base font-medium text-accent-cyan hover:text-white transition-colors">
-              See Sample Picks ↓
-            </a>
-          </div>
-          <p className="mt-6 text-sm text-text-muted">
-            ⚡ Instant access • 💳 Cancel anytime • 🔒 Secure checkout
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-text-muted">
+            Real time to involine the sports game with machine learning.
           </p>
 
-          <div className="mt-12 grid items-end gap-5 md:grid-cols-3">
-            {["card-left", "card-center", "card-right"].map((klass, i) => (
-              <Card
-                key={klass}
-                className={`dashboard-card animate-float-slow border-card-border bg-card-bg p-6 ${
-                  klass === "card-center"
-                    ? "scale-105"
-                    : klass === "card-left"
-                      ? "scale-90 opacity-70 md:rotate-y-6"
-                      : "scale-90 opacity-70"
-                }`}
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <p className="font-semibold">AI Picks Engine</p>
-                  <Badge className="bg-red-500/20 text-red-200">Live</Badge>
-                </div>
-                <p className="text-xs text-text-muted">2m ago</p>
-                <p className="mt-4 text-sm">LAL Lakers vs. DEN Nuggets</p>
-                <div className="mt-3 flex gap-2 text-xs">
-                  <span className="rounded-md bg-white/10 px-3 py-2">-8.5</span>
-                  <span className="rounded-md bg-white/10 px-3 py-2">-1.20</span>
-                  <span className="rounded-md bg-[#00E5FF] px-4 py-2 font-bold text-bg-primary shadow-[0_0_16px_rgba(0,229,255,0.4)]">
-                    8.87
-                  </span>
-                </div>
-                {i === 1 && (
-                  <>
-                    <p className="mt-4 text-sm">AI Confidence Score: 8.87/10</p>
-                    <div className="mt-2 h-2 rounded-full bg-white/10">
-                      <div className="h-2 w-[88%] rounded-full bg-gradient-to-r from-accent-green to-accent-cyan" />
+          <div className="mt-16 relative perspective-1000">
+            <div className="grid items-center gap-6 md:grid-cols-3">
+              {["left", "center", "right"].map((pos, i) => (
+                <Card
+                  key={pos}
+                  className={`group relative border border-accent-cyan/20 bg-black/60 backdrop-blur-xl p-6 transition-all duration-500 ${
+                    pos === "center"
+                      ? "md:scale-110 z-10 shadow-[0_0_40px_rgba(0,240,255,0.3)]"
+                      : "md:scale-95 opacity-80 hover:opacity-100"
+                  }`}
+                  style={
+                    pos === "left"
+                      ? { transform: "rotateY(8deg)" }
+                      : pos === "right"
+                        ? { transform: "rotateY(-8deg)" }
+                        : undefined
+                  }
+                >
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-accent-green animate-pulse" />
+                      <p className="text-sm font-semibold text-white/90">Live Dashboard</p>
                     </div>
-                  </>
-                )}
-              </Card>
-            ))}
+                    <span className="text-xs text-red-400">23m 8m</span>
+                  </div>
+
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-[#552583] flex items-center justify-center text-xs font-bold">LAL</div>
+                      <span className="text-sm font-semibold text-white">Lakers</span>
+                    </div>
+                    <span className="text-xs text-text-muted">vs.</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-white">Nuggets</span>
+                      <div className="h-8 w-8 rounded-full bg-[#0E2240] flex items-center justify-center text-xs font-bold">DEN</div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <span className="flex-1 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-center text-sm font-semibold">-1.65</span>
+                    <span className="flex-1 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-center text-sm font-semibold">-1.20</span>
+                    <span className="flex-1 rounded-lg bg-accent-green/20 border border-accent-green px-3 py-2 text-center text-sm font-bold text-accent-green shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                      8.26
+                    </span>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* AI Confidence Score */}
+            <div className="mt-12 mx-auto max-w-2xl">
+              <div className="rounded-2xl border border-accent-cyan/30 bg-black/60 backdrop-blur-xl p-6 shadow-[0_0_60px_rgba(0,240,255,0.2)]">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-lg font-bold text-white">AI Confidence Score: <span className="text-accent-cyan">8.8</span>/10</p>
+                </div>
+                <div className="h-4 rounded-full bg-gray-800 overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-accent-cyan to-accent-green shadow-[0_0_20px_rgba(0,240,255,0.6)]" 
+                    style={{ width: "88%" }}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
