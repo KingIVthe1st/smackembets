@@ -201,8 +201,8 @@ export function LandingPage() {
       >
         <div className="mx-auto flex h-[64px] w-full max-w-7xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-2.5">
-            <Image src="/logo.png" alt="Smack'em Bets" width={36} height={36} className="h-9 w-9 rounded-full border-2 border-primary-yellow/60 object-cover" />
-            <span className="font-bangers text-lg tracking-wider text-white/90">Smack&apos;em</span>
+            <Image src="/logo.png" alt="Smack'em Bets" width={56} height={56} className="h-14 w-14 rounded-full border-2 border-primary-yellow/60 object-cover" />
+            <span className="font-bangers text-2xl tracking-wider text-white/90">Smack&apos;em</span>
           </a>
           <div className="hidden items-center gap-8 text-xs font-mono uppercase tracking-[0.2em] text-white/60 md:flex">
             <a href="#arsenal" className="hover:text-primary-yellow transition-colors duration-300">Arsenal</a>
