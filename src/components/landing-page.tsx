@@ -20,57 +20,57 @@ const stats = [
 const arsenalSteps = [
   {
     step: "01",
-    title: "Deep Learning Engine",
-    subtitle: "37 data points. Every game.",
-    text: "Dual-model validation cross-references gradient-boosted predictions against Elo power ratings. Bad spots get filtered before they ever hit your inbox.",
+    title: "The Quant Killer Engine",
+    subtitle: "Finds the cracks in the sportsbook's armor.",
+    text: "Our AI analyzes 37 data points per game. It runs two competing models against each other to find discrepancies the books miss. If there isn't a clear, high-probability edge, the pick gets thrown in the trash. You only get A+ setups.",
     image: "/feat-deeplearn.png"
   },
   {
     step: "02",
-    title: "Live Odds Intel",
-    subtitle: "See what the books don't want you to see.",
-    text: "Real-time line movement tracking surfaces soft numbers before the books fully correct. When the market shifts, you know first.",
+    title: "The Line Sniper",
+    subtitle: "Beat the books to the punch.",
+    text: "We track real-time line movements across the market. When a book is slow to adjust a soft number, Farrah flags it instantly. You get the best price before the market corrects and the value is gone.",
     image: "/feat-odds.png"
   },
   {
     step: "03",
-    title: "AI Parlay Builder",
-    subtitle: "Engineered stacks, not random combos.",
-    text: "Build correlated, high-confidence parlays from AI-scored legs. Every combination is validated for statistical edge.",
+    title: "The Smart Parlay Stacker",
+    subtitle: "Engineer payouts, don't just pray for them.",
+    text: "Stop throwing random legs together. Farrah identifies correlated, high-edge picks and builds parlays where the statistics stack in your favor. It's the difference between gambling and engineering a win.",
     image: "/feat-parlay.png"
   }
 ];
 
 const testimonials = [
   {
-    quote: "I was flushing money on gut-feel bets. Smack'em paid for itself in the first week. The AI edge is terrifyingly real.",
+    quote: "Was pissing away money on gut bets. No system. Smack'em paid for itself in 3 days. This AI is scary good.",
     name: "Mark R.",
-    detail: "Member since Feb '26",
+    detail: "+$2,340 first week",
     avatar: "M",
     winAmount: "+$2,340"
   },
   {
-    quote: "Finally, picks backed by actual data — not some dude's hunches on Twitter. The parlay builder alone is worth $250.",
+    quote: "I'm done with Twitter gurus. This is pure data. The parlay builder alone is worth the price. Finally a real edge.",
     name: "Jason T.",
     detail: "3-month streak",
     avatar: "J",
     winAmount: "+$4,180"
   },
   {
-    quote: "68% hit rate isn't hype. I tracked every pick for two months. Farrah is the real deal.",
+    quote: "I'm a skeptic. I tracked every pick for 60 days. The 68% win rate is legit. Farrah is the truth.",
     name: "Sarah K.",
-    detail: "Verified member",
+    detail: "Verified 60-day tracker",
     avatar: "S",
     winAmount: "+$1,870"
   }
 ];
 
 const faqs = [
-  { question: "Who is Farrah?", answer: "Farrah is the proprietary AI engine behind Smack'em Bets. It blends gradient-boosted modeling, Elo power ratings, and live market inputs into a single confidence score — analyzing 37 data points per game before making a single pick." },
-  { question: "Is the 68.3% win rate real?", answer: "Yes. Tracked and verified across 835+ logged games. No cherry-picking, no retroactive adjustments. Every pick is timestamped before tip-off." },
-  { question: "$250/month seems steep.", answer: "If you bet $50-100/game, one extra win per week pays for the entire month. Our members average 12-15 extra wins monthly. The question isn't whether you can afford it — it's whether you can afford not to have it." },
-  { question: "What exactly do I get?", answer: "Daily AI-powered picks at 3pm ET: spreads, totals, moneylines, and engineered parlays — each with full rationale, edge score, and confidence rating." },
-  { question: "Can I cancel anytime?", answer: "One click. No contracts, no friction, no questions. But most members don't — because the picks print." }
+  { question: "Who is Farrah?", answer: "Farrah isn't a person. It's our proprietary dual-model AI engine — the weapon we built to find weaknesses in sportsbook algorithms. It has no biases, no emotions, and only cares about one thing: finding a verifiable statistical edge." },
+  { question: "Is the 68.3% win rate real?", answer: "Yes. And we encourage you to track it. This isn't a cherry-picked number — it's our documented, long-term win rate across all games that met our strict 7.0+ edge threshold. We're in the business of data, not hype." },
+  { question: "$250/month seems steep.", answer: "Compared to what? Losing $500 on a bad Sunday? Paying another guru for coin-flip picks? Smack'em isn't a cost — it's an investment. The goal is for the AI to pay for itself in the first week." },
+  { question: "What exactly do I get?", answer: "Instant access to the full arsenal. Every day at 3pm ET, you get the AI's complete card of high-edge picks. You get Live Odds Intel to snipe soft lines. And you get the AI Parlay Builder to stack the odds in your favor." },
+  { question: "Can I cancel anytime?", answer: "One click. No friction. If you're not dominating, cancel from your dashboard instantly. We're confident you won't want to." }
 ];
 
 const pricingFeatures = [
@@ -232,19 +232,21 @@ export function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            AI-Powered Sports Betting Intelligence
+            AI-Powered Betting Weaponry
           </motion.p>
 
           <motion.h1
-            className="cmyk-text glitch-text text-[clamp(3.5rem,15vw,9rem)] leading-[0.82] font-extrabold tracking-tighter"
-            data-text="STOP GUESSING"
+            className="cmyk-text glitch-text text-[clamp(2.5rem,10vw,6.5rem)] leading-[0.88] font-extrabold tracking-tighter"
+            data-text="THE BOOKS USE AN AI. DO YOU?"
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            STOP
+            THE BOOKS
             <br />
-            GUESSING
+            USE AN AI.
+            <br />
+            DO YOU?
           </motion.h1>
 
           <motion.p
@@ -253,8 +255,8 @@ export function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            The sportsbooks have armies of quants working against you.
-            Now you have <span className="text-primary-yellow font-bold">your own AI weapon.</span>
+            They weaponized data to build their lines.
+            We built a weapon to <span className="text-primary-yellow font-bold">break them.</span>
           </motion.p>
 
           <motion.div
@@ -270,7 +272,7 @@ export function LandingPage() {
               <CheckoutButton className="h-14 bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
             </motion.div>
             <a href="#arsenal" className="text-sm text-white/40 hover:text-white/70 transition-colors font-mono uppercase tracking-widest">
-              See how it works ↓
+              See The AI&apos;s Arsenal ↓
             </a>
           </motion.div>
         </motion.div>
@@ -314,7 +316,7 @@ export function LandingPage() {
           >
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-red/70 mb-4">The Problem</p>
             <h2 className="font-bangers text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white/90">
-              You&apos;re betting <span className="text-primary-red">blind.</span>
+              Your &ldquo;system&rdquo; is <span className="text-primary-red">designed to fail.</span>
             </h2>
           </motion.div>
 
@@ -326,9 +328,9 @@ export function LandingPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {[
-              { icon: X, label: "Twitter \"experts\"", sub: "selling dreams" },
-              { icon: AlertTriangle, label: "Gut-feel parlays", sub: "burning cash" },
-              { icon: X, label: "Random picks", sub: "zero edge" }
+              { icon: X, label: "Bleeding cash on \"expert\" picks", sub: "Twitter gurus selling dreams" },
+              { icon: AlertTriangle, label: "Chasing losses with gut-feel parlays", sub: "Hope is not a strategy" },
+              { icon: X, label: "Coin-flip bets with zero edge", sub: "The house always wins — unless..." }
             ].map((item, i) => (
               <motion.div
                 key={item.label}
@@ -360,9 +362,9 @@ export function LandingPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            The sportsbooks have armies of quants. You have... a feeling?
+            The books aren&apos;t just lucky. They&apos;re deploying armies of quants against you. You&apos;re using hope.
             <br />
-            <span className="text-primary-yellow font-bold mt-2 inline-block">It&apos;s time to even the odds.</span>
+            <span className="text-primary-yellow font-bold mt-2 inline-block">It&apos;s time to fight fire with fire.</span>
           </motion.p>
         </div>
       </motion.section>
@@ -408,8 +410,8 @@ export function LandingPage() {
             transition={{ duration: 0.6 }}
           >
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</p>
-            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">The Arsenal</h2>
-            <p className="mt-3 text-white/40 max-w-lg text-sm leading-relaxed">Three proprietary modules working in concert. Each one gives you an edge. Together, they make you dangerous.</p>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Your New Arsenal</h2>
+            <p className="mt-3 text-white/40 max-w-lg text-sm leading-relaxed">Three proprietary weapons working in concert. Each one gives you an edge the books can&apos;t see. Together, they make you dangerous.</p>
           </motion.div>
 
           <div className="space-y-8">
@@ -431,7 +433,7 @@ export function LandingPage() {
             transition={{ duration: 0.6 }}
           >
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Real Members. Real Results.</p>
-            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Voice of The Winners</h2>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">The Receipts.</h2>
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -483,7 +485,7 @@ export function LandingPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Today&apos;s Intelligence</p>
-            <h2 className="cmyk-text text-4xl sm:text-5xl">The Daily Card</h2>
+            <h2 className="cmyk-text text-4xl sm:text-5xl">What The AI Flagged Today</h2>
           </div>
 
           <div className="comic-panel relative overflow-hidden p-0">
@@ -523,10 +525,10 @@ export function LandingPage() {
 
               <div className="mt-8 text-center">
                 <Lock className="h-5 w-5 text-primary-yellow/50 mx-auto mb-2" />
-                <p className="font-bangers text-lg tracking-wide text-white/60">Full card unlocks with membership</p>
+                <p className="font-bangers text-lg tracking-wide text-white/60">Full card &amp; edge scores unlock instantly</p>
                 <motion.div className="mt-4" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <a href="#pricing" className="inline-block bg-primary-yellow/20 border-2 border-primary-yellow/50 text-primary-yellow font-bangers tracking-wider px-7 py-3 rounded-lg hover:bg-primary-yellow/30 transition-all text-base">
-                    Unlock Picks →
+                    Unlock Today&apos;s Card →
                   </a>
                 </motion.div>
               </div>
@@ -546,7 +548,7 @@ export function LandingPage() {
             transition={{ duration: 0.6 }}
           >
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Your Unfair Advantage Awaits</p>
-            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Become An Insider</h2>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Your ROI Starts Today.</h2>
           </motion.div>
 
           <motion.div
@@ -578,7 +580,7 @@ export function LandingPage() {
               <div className="relative z-10 p-8 sm:p-10">
                 <span className="inline-block bg-primary-red text-white font-bangers text-xs tracking-wider px-3 py-1 rounded-full mb-4">🔥 LIMITED LAUNCH PRICING</span>
                 <h3 className="font-bangers text-3xl sm:text-4xl tracking-wide">Smack&apos;em Bets Pro</h3>
-                <p className="text-sm text-white/50 mt-1 font-mono">Premium access to the Farrah AI engine</p>
+                <p className="text-sm text-white/50 mt-1 font-mono">This isn&apos;t a cost. It&apos;s an investment in a statistical weapon.</p>
 
                 <div className="mt-4 flex items-center gap-3">
                   <span className="text-white/30 line-through text-lg font-bangers">$500/mo</span>
@@ -678,19 +680,19 @@ export function LandingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Their Guesswork.
+            Stop Betting.
             <br />
-            <span className="text-primary-yellow">Your Certainty.</span>
+            <span className="text-primary-yellow">Start Printing.</span>
           </motion.h2>
 
           <motion.p
-            className="mt-5 text-white/50 text-lg max-w-md mx-auto"
+            className="mt-5 text-white/50 text-base sm:text-lg max-w-md mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Join the bettors who stopped gambling and started investing. Your first card drops at 3pm ET.
+            Keep relying on luck and Twitter &ldquo;experts,&rdquo; or arm yourself with a real statistical weapon. Your first AI-vetted card is waiting.
           </motion.p>
 
           <motion.div
