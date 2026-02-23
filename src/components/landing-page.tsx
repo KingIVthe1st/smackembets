@@ -22,21 +22,21 @@ const arsenalSteps = [
     step: "01",
     title: "The Quant Killer Engine",
     subtitle: "Finds the cracks in the sportsbook's armor.",
-    text: "Our AI analyzes 37 data points per game. It runs two competing models against each other to find discrepancies the books miss. If there isn't a clear, high-probability edge, the pick gets thrown in the trash. You only get A+ setups.",
+    text: "Farrah checks 37 data points per game — stuff like travel schedules, ref tendencies, pace matchups, and player fatigue. She runs two AI models that have to AGREE before sending you anything. If the math doesn't scream \"take this bet,\" you never see it.",
     image: "/feat-deeplearn.png"
   },
   {
     step: "02",
     title: "The Line Sniper",
     subtitle: "Beat the books to the punch.",
-    text: "We track real-time line movements across the market. When a book is slow to adjust a soft number, Farrah flags it instantly. You get the best price before the market corrects and the value is gone.",
+    text: "Sportsbooks set odds based on public opinion. When everyone bets one side, the line moves — but sometimes the books are slow. Farrah spots those soft lines instantly and alerts you before they correct. That window is your money.",
     image: "/feat-odds.png"
   },
   {
     step: "03",
     title: "The Smart Parlay Stacker",
     subtitle: "Engineer payouts, don't just pray for them.",
-    text: "Stop throwing random legs together. Farrah identifies correlated, high-edge picks and builds parlays where the statistics stack in your favor. It's the difference between gambling and engineering a win.",
+    text: "Random parlays are lottery tickets. Farrah's are different — she finds picks that are statistically connected and stacks them into parlays where every leg has real edge. It's the difference between praying and engineering a payout.",
     image: "/feat-parlay.png"
   }
 ];
@@ -373,6 +373,99 @@ export function LandingPage() {
         </div>
       </motion.section>
 
+      {/* ═══ HOW FARRAH BEATS THE BOOKS ═══ */}
+      <section className="relative py-20 sm:py-28">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Edge, Explained</p>
+            <h2 className="font-bangers text-4xl sm:text-6xl tracking-tight">How Farrah Beats The Books.</h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="comic-panel p-7 sm:p-10 space-y-5 text-sm sm:text-base leading-relaxed text-white/70"
+          >
+            <p>
+              Think the sportsbooks have it all figured out? They&rsquo;re smart, no doubt. They set lines that <em>look</em> unbeatable. But here&rsquo;s the thing — <span className="text-white font-bold">everyone is looking at the same basic stats.</span>
+            </p>
+            <p>
+              Farrah is like having <span className="text-primary-yellow font-bold">super-hearing at the world&rsquo;s biggest poker game.</span> She can&rsquo;t see the other guy&rsquo;s cards, but she hears all the little &ldquo;tells&rdquo; the books are too busy to notice. Things like how a star player&rsquo;s points drop 15% when he plays on a Tuesday, on the road, after a flight longer than 3 hours. Weird? Yes. Real? Absolutely.
+            </p>
+            <p>
+              She scans <span className="text-white font-semibold">thousands of these hidden patterns</span> — obscure stats, weird situational matchups, travel fatigue, referee tendencies — stuff most people never see. She doesn&rsquo;t predict the future. She just finds the cracks in the armor. She pinpoints bets where <span className="text-primary-yellow font-semibold">the odds are just plain wrong</span> based on what the data actually shows.
+            </p>
+            <p className="text-primary-yellow font-bangers text-xl sm:text-2xl tracking-wide pt-2 border-t border-primary-yellow/10">
+              It&rsquo;s not magic. It&rsquo;s a goddamn information advantage. 🕷️
+            </p>
+          </motion.div>
+
+          {/* ═══ REAL BET PROOF ═══ */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-8 comic-panel p-7 sm:p-10 border-primary-yellow/30"
+          >
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-xl">🎯</span>
+              <h3 className="font-bangers text-2xl tracking-wide">Real Talk: Here&rsquo;s A Pick That Hit</h3>
+            </div>
+            <div className="space-y-4 text-sm sm:text-base leading-relaxed text-white/70">
+              <p>
+                Remember that Celtics vs. Bucks game? Jayson Tatum was on an absolute tear, dropping 30+ points like nothing. The public was <span className="text-primary-red font-semibold">hammering the OVER</span> on his points prop at 29.5. It looked like free money.
+              </p>
+              <p className="text-primary-yellow font-bold text-lg">
+                But Farrah screamed &ldquo;Hold up.&rdquo; 🛑
+              </p>
+              <p>
+                She flagged that the public was ignoring a perfect storm: Tatum&rsquo;s scoring efficiency <em>tanks</em> against a top-3 defense on the second night of a back-to-back. Plus, the specific ref for that game calls 20% fewer shooting fouls on the road team. All the hype was on Tatum&rsquo;s hot streak, but the hidden numbers pointed to a grinder.
+              </p>
+            </div>
+            <div className="mt-6 grid sm:grid-cols-2 gap-4">
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between border-b border-white/5 pb-2 text-white/50">
+                  <span>Public betting:</span>
+                  <span className="text-primary-red font-bold">78% OVER</span>
+                </div>
+                <div className="flex justify-between border-b border-white/5 pb-2 text-white/50">
+                  <span>Farrah&rsquo;s call:</span>
+                  <span className="text-primary-yellow font-bold">UNDER 29.5 pts</span>
+                </div>
+                <div className="flex justify-between border-b border-white/5 pb-2 text-white/50">
+                  <span>Edge Score:</span>
+                  <span className="text-primary-yellow font-bold">8.4 / 10</span>
+                </div>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between border-b border-white/5 pb-2 text-white/50">
+                  <span>Key factors:</span>
+                  <span className="text-white/80 font-semibold">B2B + top defense + ref</span>
+                </div>
+                <div className="flex justify-between border-b border-white/5 pb-2 text-white/50">
+                  <span>Tatum&rsquo;s actual line:</span>
+                  <span className="text-white/80 font-semibold">9-for-24 shooting</span>
+                </div>
+                <div className="flex justify-between pb-2 text-white/50">
+                  <span>Result:</span>
+                  <span className="text-primary-yellow font-bangers text-lg">✅ 22 PTS — CASHED</span>
+                </div>
+              </div>
+            </div>
+            <p className="mt-4 text-xs text-white/30 italic">The public chased the hype. Farrah followed the data. That&rsquo;s the Smack&rsquo;em edge.</p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══ STATS RIBBON ═══ */}
       <motion.section
         className="relative py-12 border-y-2 border-primary-yellow/20 bg-[#0d0d2b]"
@@ -541,6 +634,46 @@ export function LandingPage() {
         </div>
       </motion.section>
 
+      {/* ═══ IS THIS FOR YOU? ═══ */}
+      <section className="py-16 sm:py-20">
+        <div className="max-w-3xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="comic-panel p-7 sm:p-10"
+          >
+            <h3 className="font-bangers text-3xl sm:text-4xl tracking-wide mb-6">Is This For You? 🤔</h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                "You're tired of losing because of last-second bad beats and boneheaded gut feelings",
+                "You know there's a smarter way to bet, but you don't have time to become a data scientist",
+                "You love finding those weird, under-the-radar picks no one's talking about",
+                "You want to feel like you've got a secret weapon every time you open your betting app",
+                "You treat betting like a sharp, fun challenge — not a get-rich-quick scheme",
+                "You'd rather build your bankroll with smart, consistent wins than chase losing lottery parlays",
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06, duration: 0.4 }}
+                  className="flex items-start gap-2.5"
+                >
+                  <span className="text-primary-yellow mt-0.5 flex-shrink-0">✓</span>
+                  <span className="text-sm text-white/60">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+            <p className="mt-6 text-xs text-white/30 italic border-t border-white/5 pt-4">
+              <span className="text-primary-red font-semibold">Not for you?</span> If you&rsquo;re looking for &ldquo;100% guaranteed locks,&rdquo; go follow some dude on Twitter who rents Lamborghinis. We don&rsquo;t sell magic beans. We sell a statistical edge.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══ ACT III: PRICING ═══ */}
       <section id="pricing" className="relative py-20 sm:py-28">
         <div className="max-w-3xl mx-auto px-6">
@@ -625,7 +758,13 @@ export function LandingPage() {
                   </motion.div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-5 text-[10px] font-mono uppercase tracking-wider text-white/30">
+                {/* No BS Guarantee */}
+                <div className="mt-6 p-4 rounded-xl border-2 border-primary-yellow/20 bg-primary-yellow/[0.04] text-center">
+                  <p className="font-bangers text-lg text-primary-yellow tracking-wide">🛡️ The No B.S. Guarantee</p>
+                  <p className="text-xs text-white/40 mt-1">Give us 30 days. If you don&rsquo;t feel like you have an unfair advantage, we&rsquo;ll refund your subscription. No hard feelings.</p>
+                </div>
+
+                <div className="mt-5 flex flex-wrap items-center justify-center sm:justify-start gap-5 text-[10px] font-mono uppercase tracking-wider text-white/30">
                   <div className="flex items-center gap-1.5">
                     <Shield className="h-3.5 w-3.5" />
                     <span>Secure Payment</span>
