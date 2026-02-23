@@ -22,17 +22,20 @@ const howItWorks = [
   {
     title: "Plug Into Farrah",
     text: "Subscribe and unlock Farrah, the same AI picks engine trusted by serious bettors.",
-    angle: "rotate-[-2deg]"
+    angle: "rotate-[-2deg]",
+    image: "/panel-farrah.png"
   },
   {
     title: "Get Daily Card",
     text: "At 3pm ET, you get spreads, totals, moneylines, and parlays ranked by edge score.",
-    angle: "rotate-[1.6deg]"
+    angle: "rotate-[1.6deg]",
+    image: "/panel-picks.png"
   },
   {
     title: "Attack The Board",
     text: "Place picks where value exists. Skip noise. Repeat with discipline.",
-    angle: "rotate-[-1.4deg]"
+    angle: "rotate-[-1.4deg]",
+    image: "/panel-attack.png"
   }
 ];
 
@@ -200,6 +203,11 @@ export function LandingPage() {
       </nav>
 
       <section id="top" className="hero-halftone relative min-h-[92vh] pt-28 sm:pt-32">
+        {/* AI-generated hero background */}
+        <div className="absolute inset-0 z-0">
+          <Image src="/hero-bg.png" alt="" fill className="object-cover opacity-40" priority />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a4e]/60 via-transparent to-[#1a1a4e]" />
+        </div>
         <FlowingWaves />
         <HeroNodeNetwork />
         <HexGridOverlay />
@@ -292,10 +300,16 @@ export function LandingPage() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ type: "spring", stiffness: 230, damping: 17, delay: index * 0.09 }}
             >
-              <Card className="comic-panel chromatic-hover h-full p-6">
-                <p className="comic-accent text-sm text-primary-yellow/70">Panel 0{index + 1}</p>
-                <h3 className="mt-2 font-bangers text-3xl tracking-wide">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.text}</p>
+              <Card className="comic-panel chromatic-hover h-full overflow-hidden p-0">
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] to-transparent" />
+                </div>
+                <div className="p-5">
+                  <p className="comic-accent text-sm text-primary-yellow/70">Panel 0{index + 1}</p>
+                  <h3 className="mt-1 font-bangers text-3xl tracking-wide">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">{item.text}</p>
+                </div>
                 <ImpactStar className="-right-5 -top-5 h-14 w-14" label={index === 0 ? "THWIP" : index === 1 ? "BAM" : "WIN"} />
               </Card>
             </motion.div>
