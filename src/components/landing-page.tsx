@@ -615,13 +615,13 @@ export function LandingPage() {
 
                 <div className="mt-8">
                   <motion.div
-                    className="inline-block"
+                    className="w-full"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     animate={{ boxShadow: ["0 0 20px rgba(255,204,0,0.1)", "0 0 40px rgba(255,204,0,0.3)", "0 0 20px rgba(255,204,0,0.1)"] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <CheckoutButton className="h-14 w-full sm:w-auto bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
+                    <CheckoutButton className="h-14 w-full bg-primary-yellow text-navy font-bangers text-base sm:text-lg tracking-widest px-4 sm:px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
                   </motion.div>
                 </div>
 
