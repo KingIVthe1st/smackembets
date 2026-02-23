@@ -236,7 +236,7 @@ export function LandingPage() {
           </motion.p>
 
           <motion.h1
-            className="cmyk-text glitch-text text-[clamp(2.5rem,10vw,6.5rem)] leading-[0.88] font-extrabold tracking-tighter"
+            className="cmyk-text glitch-text text-[clamp(2.8rem,11vw,6.5rem)] leading-[0.88] font-extrabold tracking-tighter"
             data-text="THE BOOKS USE AN AI. DO YOU?"
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
