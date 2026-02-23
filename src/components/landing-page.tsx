@@ -275,7 +275,7 @@ export function LandingPage() {
             >
               <CheckoutButton className="h-14 bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
             </motion.div>
-            <a href="#arsenal" className="text-sm text-white/40 hover:text-white/70 transition-colors font-mono uppercase tracking-widest">
+            <a href="#arsenal" className="text-sm text-white font-bangers tracking-wider bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all">
               See The AI&apos;s Arsenal ↓
             </a>
           </motion.div>
