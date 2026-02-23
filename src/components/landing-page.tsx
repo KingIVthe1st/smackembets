@@ -11,10 +11,10 @@ import { CheckoutButton } from "@/components/checkout-button";
    ═══════════════════════════════════════════════════════════════ */
 
 const stats = [
-  { value: 835, suffix: "+", label: "Games Analyzed", icon: "📊" },
-  { value: 68.3, suffix: "%", label: "Win Rate", decimals: 1, icon: "🏆" },
-  { value: 37, suffix: "", label: "Data Points / Game", icon: "🧠" },
-  { value: 7.0, suffix: "+", label: "Edge Threshold", decimals: 1, icon: "⚡" }
+  { value: 835, suffix: "+", label: "Games Analyzed" },
+  { value: 68.3, suffix: "%", label: "Win Rate", decimals: 1 },
+  { value: 37, suffix: "", label: "Data Points / Game" },
+  { value: 7.0, suffix: "+", label: "Edge Threshold", decimals: 1 }
 ];
 
 const arsenalSteps = [
@@ -172,8 +172,8 @@ function ArsenalCard({ item, index }: { item: typeof arsenalSteps[0]; index: num
       <div className="p-6 sm:p-8 lg:w-1/2 flex flex-col justify-center">
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-yellow/50">Module {item.step}</p>
         <h3 className="mt-2 font-bangers text-3xl lg:text-4xl tracking-wide text-white">{item.title}</h3>
-        <p className="mt-1 text-sm font-semibold text-primary-yellow/70">{item.subtitle}</p>
-        <p className="mt-4 text-sm leading-relaxed text-white/60">{item.text}</p>
+        <p className="mt-1 text-sm font-semibold text-primary-yellow/80">{item.subtitle}</p>
+        <p className="mt-4 text-sm leading-relaxed text-white/70">{item.text}</p>
       </div>
     </motion.div>
   );
@@ -204,7 +204,7 @@ export function LandingPage() {
             <Image src="/logo.png" alt="Smack'em Bets" width={36} height={36} className="h-9 w-9 rounded-full border-2 border-primary-yellow/60 object-cover" />
             <span className="font-bangers text-lg tracking-wider text-white/90">Smack&apos;em</span>
           </a>
-          <div className="hidden items-center gap-8 text-xs font-mono uppercase tracking-[0.2em] text-white/50 md:flex">
+          <div className="hidden items-center gap-8 text-xs font-mono uppercase tracking-[0.2em] text-white/60 md:flex">
             <a href="#arsenal" className="hover:text-primary-yellow transition-colors duration-300">Arsenal</a>
             <a href="#proof" className="hover:text-primary-yellow transition-colors duration-300">Proof</a>
             <a href="#pricing" className="hover:text-primary-yellow transition-colors duration-300">Pricing</a>
@@ -227,7 +227,7 @@ export function LandingPage() {
         <motion.div className="relative z-10 text-center px-6 max-w-5xl" style={{ opacity: heroOpacity }}>
           {/* Typing headline */}
           <motion.p
-            className="font-mono text-xs uppercase tracking-[0.4em] text-primary-yellow/70 mb-6"
+            className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow inline-block border border-primary-yellow/30 rounded-full px-4 py-1.5 mb-4"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -300,7 +300,7 @@ export function LandingPage() {
         transition={{ duration: 0.8 }}
       >
         {/* Chaos background image */}
-        <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 z-0 opacity-30">
           <Image src="/chaos-scene.png" alt="" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d2b] via-transparent to-[#0d0d2b] z-[1]" />
@@ -354,7 +354,7 @@ export function LandingPage() {
           </motion.div>
 
           <motion.p
-            className="mt-10 text-lg text-white/50 max-w-lg mx-auto"
+            className="mt-10 text-lg text-white/50 max-w-md mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -386,8 +386,8 @@ export function LandingPage() {
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <span className="text-xl inline-block transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12">{item.icon}</span>
-              <p className="font-bangers text-4xl sm:text-5xl text-primary-yellow mt-1">
+              <div className="mx-auto mb-3 h-1 w-8 rounded-full bg-primary-yellow/40 group-hover:bg-primary-yellow transition-colors duration-300" />
+              <p className="font-bangers text-5xl sm:text-6xl text-primary-yellow">
                 <Counter target={item.value} decimals={item.decimals ?? 0} suffix={item.suffix} />
               </p>
               <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/40 mt-1 transition-colors duration-300 group-hover:text-white/70">{item.label}</p>
@@ -447,7 +447,7 @@ export function LandingPage() {
               >
                 <div className="comic-panel p-6 h-full flex flex-col justify-between hover:shadow-[8px_8px_0_rgba(255,204,0,0.2)] transition-shadow duration-300">
                   {/* Win badge */}
-                  <div className="absolute -right-2 -top-3">
+                  <div className="absolute right-4 -top-2 z-10">
                     <span className="bg-green-500 text-navy font-bangers text-sm px-3 py-1 rounded-full shadow-lg">{t.winAmount}</span>
                   </div>
                   <div>
@@ -525,7 +525,7 @@ export function LandingPage() {
                 <Lock className="h-5 w-5 text-primary-yellow/50 mx-auto mb-2" />
                 <p className="font-bangers text-lg tracking-wide text-white/60">Full card unlocks with membership</p>
                 <motion.div className="mt-4" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <a href="#pricing" className="inline-block bg-primary-yellow/10 border border-primary-yellow/30 text-primary-yellow font-bangers tracking-wider px-6 py-2.5 rounded-lg hover:bg-primary-yellow/20 transition-all text-sm">
+                  <a href="#pricing" className="inline-block bg-primary-yellow/20 border-2 border-primary-yellow/50 text-primary-yellow font-bangers tracking-wider px-7 py-3 rounded-lg hover:bg-primary-yellow/30 transition-all text-base">
                     Unlock Picks →
                   </a>
                 </motion.div>
@@ -580,7 +580,7 @@ export function LandingPage() {
                 <h3 className="font-bangers text-3xl sm:text-4xl tracking-wide">Smack&apos;em Bets Pro</h3>
                 <p className="text-sm text-white/50 mt-1 font-mono">Premium access to the Farrah AI engine</p>
 
-                <div className="mt-3 flex items-center gap-3">
+                <div className="mt-4 flex items-center gap-3">
                   <span className="text-white/30 line-through text-lg font-bangers">$500/mo</span>
                   <span className="bg-primary-yellow/20 text-primary-yellow text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded">50% off</span>
                 </div>
