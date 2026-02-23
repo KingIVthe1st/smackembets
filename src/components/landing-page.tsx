@@ -404,7 +404,7 @@ export function LandingPage() {
               She scans <span className="text-white font-semibold">thousands of these hidden patterns</span>: obscure stats, weird situational matchups, travel fatigue, referee tendencies. Stuff most people never see. She doesn&rsquo;t predict the future. She just finds the cracks in the armor. She pinpoints bets where <span className="text-primary-yellow font-semibold">the odds are just plain wrong</span> based on what the data actually shows.
             </p>
             <p className="text-primary-yellow font-bangers text-xl sm:text-2xl tracking-wide pt-2 border-t border-primary-yellow/10">
-              It&rsquo;s not magic. It&rsquo;s a goddamn information advantage. 🕷️
+              It&rsquo;s not magic. It&rsquo;s a cold, calculated information advantage. 🕷️
             </p>
           </motion.div>
 
