@@ -621,11 +621,11 @@ export function LandingPage() {
                     animate={{ boxShadow: ["0 0 20px rgba(255,204,0,0.1)", "0 0 40px rgba(255,204,0,0.3)", "0 0 20px rgba(255,204,0,0.1)"] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <CheckoutButton className="h-14 bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
+                    <CheckoutButton className="h-14 w-full sm:w-auto bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
                   </motion.div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap items-center gap-5 text-[10px] font-mono uppercase tracking-wider text-white/30">
+                <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-5 text-[10px] font-mono uppercase tracking-wider text-white/30">
                   <div className="flex items-center gap-1.5">
                     <Shield className="h-3.5 w-3.5" />
                     <span>Secure Payment</span>
