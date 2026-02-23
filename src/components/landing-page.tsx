@@ -708,7 +708,7 @@ export function LandingPage() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
-            <CheckoutButton className="h-16 bg-primary-yellow text-navy font-bangers text-xl tracking-widest px-12 rounded-xl shadow-[5px_5px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
+            <CheckoutButton className="h-16 w-full sm:w-auto bg-primary-yellow text-navy font-bangers text-xl tracking-widest px-12 rounded-xl shadow-[5px_5px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
           </motion.div>
         </div>
       </motion.section>
