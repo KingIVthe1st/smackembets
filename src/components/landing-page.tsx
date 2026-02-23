@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import { AnimatePresence, animate, motion, useInView, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { Brain, Sparkles, TrendingUp, Zap, Shuffle, ChevronDown, Check, Shield, Lock } from "lucide-react";
+import { Brain, Sparkles, TrendingUp, Zap, Shuffle, ChevronDown, Check, Shield, Lock, X, AlertTriangle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckoutButton } from "@/components/checkout-button";
-import { FlowingWaves } from "@/components/flowing-waves";
-import { HeroNodeNetwork } from "@/components/hero-node-network";
-import { HexGridOverlay } from "@/components/hex-grid-overlay";
 
-/* ─── DATA ─── */
+/* ═══════════════════════════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════════════════════════ */
+
 const stats = [
   { value: 835, suffix: "+", label: "Games Analyzed", icon: "📊" },
   { value: 68.3, suffix: "%", label: "Win Rate", decimals: 1, icon: "🏆" },
@@ -19,44 +19,26 @@ const stats = [
   { value: 7.0, suffix: "+", label: "Edge Threshold", decimals: 1, icon: "⚡" }
 ];
 
-const howItWorks = [
+const arsenalSteps = [
   {
     step: "01",
-    title: "Plug Into Farrah",
-    text: "Subscribe and unlock Farrah — the same proprietary AI engine trusted by serious bettors who refuse to gamble blind.",
-    image: "/panel-farrah.png",
-    burst: "THWIP"
-  },
-  {
-    step: "02",
-    title: "Get Your Daily Card",
-    text: "Every day at 3pm ET, your card drops: spreads, totals, moneylines, and parlays — all ranked by AI edge score.",
-    image: "/panel-picks.png",
-    burst: "BAM"
-  },
-  {
-    step: "03",
-    title: "Attack The Board",
-    text: "Strike where value exists. Skip the noise. Stack wins with discipline. That's how you smack the sportsbooks.",
-    image: "/panel-attack.png",
-    burst: "WIN"
-  }
-];
-
-const features = [
-  {
-    title: "Deep Learning Models",
+    title: "Deep Learning Engine",
+    subtitle: "37 data points. Every game.",
     text: "Dual-model validation cross-references gradient-boosted predictions against Elo power ratings. Bad spots get filtered before they ever hit your inbox.",
     image: "/feat-deeplearn.png"
   },
   {
+    step: "02",
     title: "Live Odds Intel",
+    subtitle: "See what the books don't want you to see.",
     text: "Real-time line movement tracking surfaces soft numbers before the books fully correct. When the market shifts, you know first.",
     image: "/feat-odds.png"
   },
   {
+    step: "03",
     title: "AI Parlay Builder",
-    text: "Build correlated, high-confidence stacks from AI-scored legs. No random combos — every parlay is engineered for edge.",
+    subtitle: "Engineered stacks, not random combos.",
+    text: "Build correlated, high-confidence parlays from AI-scored legs. Every combination is validated for statistical edge.",
     image: "/feat-parlay.png"
   }
 ];
@@ -66,68 +48,57 @@ const testimonials = [
     quote: "I was flushing money on gut-feel bets. Smack'em paid for itself in the first week. The AI edge is terrifyingly real.",
     name: "Mark R.",
     detail: "Member since Feb '26",
-    avatar: "M"
+    avatar: "M",
+    winAmount: "+$2,340"
   },
   {
     quote: "Finally, picks backed by actual data — not some dude's hunches on Twitter. The parlay builder alone is worth $250.",
     name: "Jason T.",
     detail: "3-month streak",
-    avatar: "J"
+    avatar: "J",
+    winAmount: "+$4,180"
   },
   {
     quote: "68% hit rate isn't hype. I tracked every pick for two months. Farrah is the real deal.",
     name: "Sarah K.",
     detail: "Verified member",
-    avatar: "S"
+    avatar: "S",
+    winAmount: "+$1,870"
   }
 ];
 
 const faqs = [
-  {
-    question: "Who is Farrah?",
-    answer: "Farrah is the proprietary AI engine behind Smack'em Bets. It blends gradient-boosted modeling, Elo power ratings, and live market inputs into a single confidence score — analyzing 37 data points per game before making a single pick."
-  },
-  {
-    question: "Is the 68.3% win rate real?",
-    answer: "Yes. Tracked and verified across 835+ logged games with consistent methodology. No cherry-picking, no retroactive adjustments. Every pick is timestamped before tip-off."
-  },
-  {
-    question: "$250/month seems expensive.",
-    answer: "If you're betting $50-100/game (which most serious bettors are), one extra win per week pays for the entire month. Our members average 12-15 extra wins monthly. Do the math."
-  },
-  {
-    question: "What do I get daily?",
-    answer: "A focused card of high-confidence spreads, totals, moneylines, and AI-approved parlays — each with full rationale, edge score, and confidence rating. Delivered at 3pm ET."
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer: "Absolutely. No contracts, no friction, no questions asked. Cancel in one click. But most members don't — because the picks print."
-  }
+  { question: "Who is Farrah?", answer: "Farrah is the proprietary AI engine behind Smack'em Bets. It blends gradient-boosted modeling, Elo power ratings, and live market inputs into a single confidence score — analyzing 37 data points per game before making a single pick." },
+  { question: "Is the 68.3% win rate real?", answer: "Yes. Tracked and verified across 835+ logged games. No cherry-picking, no retroactive adjustments. Every pick is timestamped before tip-off." },
+  { question: "$250/month seems steep.", answer: "If you bet $50-100/game, one extra win per week pays for the entire month. Our members average 12-15 extra wins monthly. The question isn't whether you can afford it — it's whether you can afford not to have it." },
+  { question: "What exactly do I get?", answer: "Daily AI-powered picks at 3pm ET: spreads, totals, moneylines, and engineered parlays — each with full rationale, edge score, and confidence rating." },
+  { question: "Can I cancel anytime?", answer: "One click. No contracts, no friction, no questions. But most members don't — because the picks print." }
 ];
 
 const pricingFeatures = [
   "Daily AI-Powered Picks (3pm ET)",
   "Full Live Odds Intel Access",
-  "The AI Parlay Builder",
+  "AI Parlay Builder",
   "Edge Score + Confidence Ratings",
-  "Cancel Anytime — No Contracts"
+  "Cancel Anytime — Zero Friction"
 ];
 
-/* ─── COMPONENTS ─── */
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY COMPONENTS
+   ═══════════════════════════════════════════════════════════════ */
+
 function Counter({ target, decimals = 0, suffix = "" }: { target: number; decimals?: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const value = useMotionValue(0);
   const transformed = useTransform(value, (v) => (decimals ? v.toFixed(decimals) : Math.round(v).toString()));
   const [text, setText] = useState("0");
-
   useEffect(() => {
     if (!inView) return;
     const controls = animate(value, target, { duration: 1.9, ease: "easeOut" });
     const unsub = transformed.on("change", (latest) => setText(latest));
     return () => { controls.stop(); unsub(); };
   }, [inView, target, transformed, value]);
-
   return <span ref={ref} className="tabular-nums">{text}{suffix}</span>;
 }
 
@@ -135,27 +106,12 @@ function ImpactStar({ className = "", label }: { className?: string; label: stri
   return (
     <motion.div
       aria-hidden="true"
-      className={`impact-burst absolute grid place-items-center border-[5px] border-primary-yellow bg-primary-yellow text-navy ${className}`}
+      className={`impact-burst absolute grid place-items-center border-[4px] border-primary-yellow bg-primary-yellow text-navy ${className}`}
       animate={{ scale: [0.96, 1.08, 0.96], rotate: [-8, 3, -8] }}
       transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
     >
-      <span className="comic-accent text-xs sm:text-sm">{label}</span>
+      <span className="comic-accent text-xs font-bold">{label}</span>
     </motion.div>
-  );
-}
-
-function Section({ id, children, className = "", delay = 0 }: { id?: string; children: React.ReactNode; className?: string; delay?: number }) {
-  return (
-    <motion.section
-      id={id}
-      className={className}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
-    >
-      {children}
-    </motion.section>
   );
 }
 
@@ -166,399 +122,619 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.55, delay: index * 0.07 }}
-      className="speech-bubble cursor-pointer"
-      onClick={() => setOpen((prev) => !prev)}
+      transition={{ duration: 0.5, delay: index * 0.06 }}
+      className="group cursor-pointer border-b-2 border-primary-yellow/20 py-5"
+      onClick={() => setOpen((p) => !p)}
     >
       <div className="flex items-center justify-between gap-4">
-        <h4 className="font-bangers text-xl tracking-wide text-white">{question}</h4>
+        <h4 className="font-bangers text-xl tracking-wide text-white group-hover:text-primary-yellow transition-colors">{question}</h4>
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown className="h-5 w-5 text-primary-yellow" />
         </motion.span>
       </div>
       <AnimatePresence initial={false}>
-        {open ? (
+        {open && (
           <motion.p
             initial={{ height: 0, opacity: 0, marginTop: 0 }}
             animate={{ height: "auto", opacity: 1, marginTop: 14 }}
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
             transition={{ duration: 0.28 }}
-            className="overflow-hidden text-sm leading-relaxed text-white/70"
+            className="overflow-hidden text-sm leading-relaxed text-white/60"
           >
             {answer}
           </motion.p>
-        ) : null}
+        )}
       </AnimatePresence>
     </motion.div>
   );
 }
 
-/* ─── MAIN PAGE ─── */
-export function LandingPage() {
-  const letters = "SMACK THE SPORTSBOOKS".split("");
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+/* ═══════════════════════════════════════════════════════════════
+   HORIZONTAL SCROLL SECTION (The Arsenal)
+   ═══════════════════════════════════════════════════════════════ */
+function HorizontalArsenal() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.66%"]);
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <main className="relative overflow-hidden pb-0 text-white">
-      {/* ═══ NAV ═══ */}
-      <nav className="fixed left-0 top-0 z-50 w-full border-b-4 border-primary-yellow bg-[#12123a]/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-4 sm:px-6">
-          <a href="#top" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Smack'em Bets" width={44} height={44} className="h-11 w-11 rounded-full border-3 border-primary-yellow bg-navy-light object-cover" />
-            <div>
-              <p className="font-bangers text-xl leading-none tracking-wider">Smack&apos;em Bets</p>
-              <p className="comic-accent text-[10px] text-primary-yellow/70">Farrah AI Picks</p>
-            </div>
-          </a>
-          <div className="hidden items-center gap-6 text-sm font-semibold md:flex">
-            <a href="#how" className="chromatic-hover hover:text-primary-yellow transition-colors">How It Works</a>
-            <a href="#features" className="chromatic-hover hover:text-primary-yellow transition-colors">Features</a>
-            <a href="#pricing" className="chromatic-hover hover:text-primary-yellow transition-colors">Pricing</a>
-            <a href="#faq" className="chromatic-hover hover:text-primary-yellow transition-colors">FAQ</a>
+    <div ref={containerRef} className="relative" style={{ height: "300vh" }}>
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+        {/* Section header */}
+        <div className="px-6 sm:px-10 mb-6">
+          <motion.p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</motion.p>
+          <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">The Arsenal</h2>
+          {/* Progress bar */}
+          <div className="mt-4 h-1 w-48 rounded-full bg-white/10 overflow-hidden">
+            <motion.div className="h-full bg-primary-yellow rounded-full" style={{ width: progressWidth }} />
           </div>
-          <Button asChild className="border-2 border-primary-yellow bg-primary-red px-5 py-2 text-white font-bangers tracking-wider shadow-[3px_3px_0_rgba(0,0,0,0.4)] hover:bg-primary-yellow hover:text-navy transition-all">
-            <a href="#pricing">Get The Alpha</a>
-          </Button>
         </div>
-      </nav>
 
-      {/* ═══ HERO ═══ */}
-      <section ref={heroRef} id="top" className="hero-halftone relative min-h-[95vh] pt-24 sm:pt-28">
-        {/* Parallax AI background */}
-        <motion.div className="absolute inset-0 z-0" style={{ y: heroY }}>
-          <Image src="/hero-bg.png" alt="" fill className="object-cover opacity-50" priority />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a4e]/40 via-transparent to-[#1a1a4e]" />
+        {/* Horizontal panels */}
+        <motion.div className="flex gap-8 px-6 sm:px-10" style={{ x }}>
+          {arsenalSteps.map((item, index) => (
+            <div key={item.step} className="w-[85vw] sm:w-[70vw] lg:w-[45vw] flex-shrink-0">
+              <div className="comic-panel h-full overflow-hidden flex flex-col lg:flex-row">
+                {/* Image */}
+                <div className="relative h-56 lg:h-auto lg:w-1/2 overflow-hidden">
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#2b2b6b]/80 hidden lg:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] to-transparent lg:hidden" />
+                  {/* Step number overlay */}
+                  <span className="absolute left-4 top-4 font-bangers text-[4rem] leading-none text-white/10">{item.step}</span>
+                </div>
+                {/* Content */}
+                <div className="p-6 lg:p-8 lg:w-1/2 flex flex-col justify-center">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-yellow/50">Module {item.step}</p>
+                  <h3 className="mt-2 font-bangers text-3xl lg:text-4xl tracking-wide text-white">{item.title}</h3>
+                  <p className="mt-1 text-sm font-semibold text-primary-yellow/80">{item.subtitle}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-white/60">{item.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </motion.div>
-        <FlowingWaves />
-        <HeroNodeNetwork />
-        <HexGridOverlay />
-        <div className="ben-day-overlay" />
+      </div>
+    </div>
+  );
+}
 
-        <ImpactStar className="right-[5%] top-28 h-24 w-24 md:h-32 md:w-32" label="POW!" />
-        <ImpactStar className="bottom-24 left-[6%] h-20 w-20 md:h-28 md:w-28" label="SMACK!" />
+/* ═══════════════════════════════════════════════════════════════
+   MAIN PAGE
+   ═══════════════════════════════════════════════════════════════ */
+export function LandingPage() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroScale = useTransform(heroProgress, [0, 1], [1, 0.9]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
+  const heroY = useTransform(heroProgress, [0, 1], ["0%", "30%"]);
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 pb-20 text-center sm:px-6">
-          {/* Caption box — like a comic book caption */}
-          <motion.div
-            className="mx-auto inline-block rounded-lg border-3 border-primary-yellow bg-primary-red/90 px-5 py-2 shadow-[4px_4px_0_rgba(0,0,0,0.4)]"
-            initial={{ scale: 0.7, rotate: -5, opacity: 0 }}
-            animate={{ scale: 1, rotate: -1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 220, damping: 13 }}
+  return (
+    <main className="relative overflow-hidden text-white bg-[#0d0d2b]">
+
+      {/* ═══ NAV ═══ */}
+      <motion.nav
+        className="fixed left-0 top-0 z-50 w-full"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+      >
+        <div className="mx-auto flex h-[64px] w-full max-w-7xl items-center justify-between px-6">
+          <a href="#top" className="flex items-center gap-2.5">
+            <Image src="/logo.png" alt="Smack'em Bets" width={36} height={36} className="h-9 w-9 rounded-full border-2 border-primary-yellow/60 object-cover" />
+            <span className="font-bangers text-lg tracking-wider text-white/90">Smack&apos;em</span>
+          </a>
+          <div className="hidden items-center gap-8 text-xs font-mono uppercase tracking-[0.2em] text-white/50 md:flex">
+            <a href="#arsenal" className="hover:text-primary-yellow transition-colors duration-300">Arsenal</a>
+            <a href="#proof" className="hover:text-primary-yellow transition-colors duration-300">Proof</a>
+            <a href="#pricing" className="hover:text-primary-yellow transition-colors duration-300">Pricing</a>
+            <a href="#faq" className="hover:text-primary-yellow transition-colors duration-300">FAQ</a>
+          </div>
+          <a href="#pricing" className="bg-primary-yellow text-navy font-bangers text-sm tracking-wider px-5 py-2 rounded-lg hover:bg-white transition-all shadow-[3px_3px_0_rgba(0,0,0,0.3)]">
+            Get Access
+          </a>
+        </div>
+      </motion.nav>
+
+      {/* ═══ ACT I: THE HOOK ═══ */}
+      <section ref={heroRef} id="top" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Parallax BG */}
+        <motion.div className="absolute inset-0 z-0" style={{ y: heroY, scale: heroScale }}>
+          <Image src="/hero-bg.png" alt="" fill className="object-cover" priority />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d2b]/70 via-[#0d0d2b]/30 to-[#0d0d2b]" />
+        </motion.div>
+
+        <motion.div className="relative z-10 text-center px-6 max-w-5xl" style={{ opacity: heroOpacity }}>
+          {/* Typing headline */}
+          <motion.p
+            className="font-mono text-xs uppercase tracking-[0.4em] text-primary-yellow/70 mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <p className="font-bangers text-sm tracking-wider text-white sm:text-base">
-              🏆 68.3% Win Rate &nbsp;|&nbsp; 835+ Games &nbsp;|&nbsp; 37 Data Points/Game
-            </p>
-          </motion.div>
+            AI-Powered Sports Betting Intelligence
+          </motion.p>
 
           <motion.h1
-            className="glitch-in cmyk-text mt-6 text-[clamp(2.8rem,11vw,8rem)] leading-[0.84]"
-            style={{ WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}
-            animate={{ x: [0, -2, 1, 0] }}
-            transition={{ duration: 0.35, delay: 0.5 }}
+            className="cmyk-text text-[clamp(3rem,12vw,9rem)] leading-[0.82] font-extrabold tracking-tighter"
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            {letters.map((char, index) => (
-              <motion.span
-                key={`${char}-${index}`}
-                className="inline-block"
-                initial={{ y: 52, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 + index * 0.018, type: "spring", stiffness: 320, damping: 18 }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            STOP
+            <br />
+            GUESSING
           </motion.h1>
 
           <motion.p
-            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg"
-            initial={{ opacity: 0, y: 22 }}
+            className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.65 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
           >
-            Stop guessing. Start winning. Our proprietary AI scans 37+ data points per game to deliver you the <span className="font-bold text-primary-yellow">sharpest edge in sports betting.</span>
+            Our AI analyzes <span className="text-primary-yellow font-bold">37 data points per game</span> across 835+ matchups.
+            68.3% verified win rate. This is your unfair advantage.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-            className="mt-8 flex flex-col items-center gap-3"
+            transition={{ delay: 1.1, duration: 0.6 }}
           >
             <motion.div
-              animate={{ scale: [1, 1.04, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <CheckoutButton className="h-14 border-3 border-primary-yellow bg-primary-red px-10 text-lg font-bold text-white font-bangers tracking-widest shadow-[6px_6px_0_rgba(0,0,0,0.4)] hover:bg-primary-yellow hover:text-navy transition-all" />
+              <CheckoutButton className="h-14 bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
             </motion.div>
-            <p className="text-xs text-white/50">Cancel anytime • No contracts</p>
+            <a href="#arsenal" className="text-sm text-white/40 hover:text-white/70 transition-colors font-mono uppercase tracking-widest">
+              See how it works ↓
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Impact bursts */}
+        <ImpactStar className="right-[8%] top-[20%] h-20 w-20 md:h-28 md:w-28 hidden sm:grid" label="POW!" />
+        <ImpactStar className="left-[5%] bottom-[25%] h-16 w-16 md:h-24 md:w-24 hidden sm:grid" label="SMACK!" />
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5">
+            <motion.div className="w-1.5 h-1.5 rounded-full bg-primary-yellow" animate={{ y: [0, 16, 0] }} transition={{ duration: 1.5, repeat: Infinity }} />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ═══ ACT I: THE CHAOS (The Problem) ═══ */}
+      <motion.section
+        className="relative py-24 sm:py-32 overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Chaos background image */}
+        <div className="absolute inset-0 z-0 opacity-20">
+          <Image src="/chaos-scene.png" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d2b] via-transparent to-[#0d0d2b] z-[1]" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-red/70 mb-4">The Problem</p>
+            <h2 className="font-bangers text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white/90">
+              You&apos;re betting <span className="text-primary-red">blind.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {[
+              { icon: X, label: "Twitter \"experts\"", sub: "selling dreams" },
+              { icon: AlertTriangle, label: "Gut-feel parlays", sub: "burning cash" },
+              { icon: X, label: "Random picks", sub: "zero edge" }
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                className="border-2 border-primary-red/30 rounded-xl p-5 bg-primary-red/5"
+                initial={{ opacity: 0, x: i === 0 ? -20 : i === 2 ? 20 : 0, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.1 }}
+              >
+                <item.icon className="h-6 w-6 text-primary-red/70 mx-auto" />
+                <p className="mt-2 font-bangers text-lg text-white/80">{item.label}</p>
+                <p className="text-xs text-white/40">{item.sub}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.p
+            className="mt-10 text-lg text-white/50 max-w-lg mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+          >
+            The sportsbooks have armies of quants. You have... a feeling?
+            <br />
+            <span className="text-primary-yellow font-bold mt-2 inline-block">It&apos;s time to even the odds.</span>
+          </motion.p>
+        </div>
+      </motion.section>
+
+      {/* ═══ STATS RIBBON ═══ */}
+      <motion.section
+        className="relative py-12 border-y-2 border-primary-yellow/20 bg-[#0d0d2b]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((item, index) => (
+            <motion.div
+              key={item.label}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <span className="text-xl">{item.icon}</span>
+              <p className="font-bangers text-4xl sm:text-5xl text-primary-yellow mt-1">
+                <Counter target={item.value} decimals={item.decimals ?? 0} suffix={item.suffix} />
+              </p>
+              <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/40 mt-1">{item.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* ═══ ACT II: THE ARSENAL (Horizontal Scroll on Desktop, Stacked on Mobile) ═══ */}
+      <div id="arsenal" className="hidden lg:block">
+        <HorizontalArsenal />
+      </div>
+
+      {/* Mobile: stacked cards */}
+      <section id="arsenal-mobile" className="lg:hidden py-20 px-6">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</p>
+        <h2 className="cmyk-text text-4xl sm:text-5xl mb-10">The Arsenal</h2>
+        <div className="space-y-6">
+          {arsenalSteps.map((item, index) => (
+            <motion.div
+              key={item.step}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="comic-panel overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] to-transparent" />
+                  <span className="absolute left-4 top-3 font-bangers text-5xl text-white/10">{item.step}</span>
+                </div>
+                <div className="p-5">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-yellow/50">Module {item.step}</p>
+                  <h3 className="mt-1 font-bangers text-2xl tracking-wide">{item.title}</h3>
+                  <p className="mt-1 text-xs font-semibold text-primary-yellow/70">{item.subtitle}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/60">{item.text}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ ACT II: VOICE OF THE WINNERS ═══ */}
+      <section id="proof" className="relative py-20 sm:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Real Members. Real Results.</p>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Voice of The Winners</h2>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {testimonials.map((t, index) => (
+              <motion.div
+                key={t.name}
+                className="relative group"
+                initial={{ opacity: 0, y: 30, rotate: index === 0 ? -1 : index === 2 ? 1 : 0 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 180, damping: 16, delay: index * 0.12 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div className="comic-panel p-6 h-full flex flex-col justify-between">
+                  {/* Win badge */}
+                  <div className="absolute -right-2 -top-3">
+                    <span className="bg-green-500 text-navy font-bangers text-sm px-3 py-1 rounded-full shadow-lg">{t.winAmount}</span>
+                  </div>
+                  <div>
+                    <div className="flex gap-0.5 text-primary-yellow text-sm mb-3">
+                      {"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}
+                    </div>
+                    <p className="text-sm leading-relaxed text-white/80 italic">&ldquo;{t.quote}&rdquo;</p>
+                  </div>
+                  <div className="mt-5 flex items-center gap-3 pt-4 border-t border-white/10">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-yellow/20 border-2 border-primary-yellow/40 font-bangers text-lg text-primary-yellow">
+                      {t.avatar}
+                    </div>
+                    <div>
+                      <p className="font-bangers text-base tracking-wide">{t.name}</p>
+                      <p className="text-[10px] text-white/40 font-mono uppercase tracking-wider">{t.detail}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ ACT III: THE GLIMPSE (Sample Picks) ═══ */}
+      <motion.section
+        className="relative py-20 sm:py-24"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Today&apos;s Intelligence</p>
+            <h2 className="cmyk-text text-4xl sm:text-5xl">The Daily Card</h2>
+          </div>
+
+          <div className="comic-panel relative overflow-hidden p-0">
+            {/* Classified overlay */}
+            <div className="absolute right-4 top-4 z-20">
+              <Image src="/classified-stamp.png" alt="Classified" width={100} height={100} className="opacity-70" />
+            </div>
+
+            <div className="p-6 sm:p-8">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-green-400/70">Live — Updated 3pm ET</p>
+              </div>
+
+              <div className="mt-5 space-y-3">
+                {[
+                  { pick: "BOS -3.5 vs MIA", edge: "8.2", conf: "HIGH" },
+                  { pick: "DAL/PHX OVER 228.5", edge: "7.6", conf: "HIGH" },
+                  { pick: "NYK ML + SAC +5.5 PARLAY", edge: "9.1", conf: "ELITE" }
+                ].map((p, i) => (
+                  <motion.div
+                    key={i}
+                    className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 blur-[5px] select-none"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + i * 0.1 }}
+                  >
+                    <span className="text-sm">{p.pick}</span>
+                    <div className="flex gap-4 text-xs font-mono">
+                      <span>Edge: {p.edge}</span>
+                      <span className={p.conf === "ELITE" ? "text-primary-yellow" : "text-green-400"}>{p.conf}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-8 text-center">
+                <Lock className="h-5 w-5 text-primary-yellow/50 mx-auto mb-2" />
+                <p className="font-bangers text-lg tracking-wide text-white/60">Full card unlocks with membership</p>
+                <motion.div className="mt-4" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <a href="#pricing" className="inline-block bg-primary-yellow/10 border border-primary-yellow/30 text-primary-yellow font-bangers tracking-wider px-6 py-2.5 rounded-lg hover:bg-primary-yellow/20 transition-all text-sm">
+                    Unlock Picks →
+                  </a>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ ACT III: PRICING ═══ */}
+      <section id="pricing" className="relative py-20 sm:py-28">
+        <div className="max-w-3xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Your Unfair Advantage Awaits</p>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Become An Insider</h2>
+          </motion.div>
+
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 150, damping: 18 }}
+          >
+            {/* Glow effect */}
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary-yellow/20 via-primary-red/10 to-primary-yellow/20 blur-xl opacity-60 pointer-events-none" />
+
+            <div className="relative comic-panel overflow-hidden p-0 border-primary-yellow">
+              <div className="ben-day-overlay opacity-15" />
+
+              {/* Price burst */}
+              <motion.div
+                className="impact-burst absolute -right-4 -top-4 z-20 grid h-32 w-32 sm:h-40 sm:w-40 place-items-center border-[4px] border-primary-yellow bg-primary-yellow text-navy"
+                animate={{ scale: [0.95, 1.06, 0.95], rotate: [-4, 4, -4] }}
+                transition={{ duration: 2.4, repeat: Infinity }}
+              >
+                <div className="text-center">
+                  <span className="font-bangers text-2xl sm:text-3xl leading-none">$250</span>
+                  <br />
+                  <span className="comic-accent text-[9px] sm:text-[10px] font-bold">/MONTH</span>
+                </div>
+              </motion.div>
+
+              <div className="relative z-10 p-8 sm:p-10">
+                <span className="inline-block bg-primary-red text-white font-bangers text-xs tracking-wider px-3 py-1 rounded-full mb-4">🔥 LIMITED LAUNCH PRICING</span>
+                <h3 className="font-bangers text-3xl sm:text-4xl tracking-wide">Smack&apos;em Bets Pro</h3>
+                <p className="text-sm text-white/50 mt-1 font-mono">Premium access to the Farrah AI engine</p>
+
+                <div className="mt-3 flex items-center gap-3">
+                  <span className="text-white/30 line-through text-lg font-bangers">$500/mo</span>
+                  <span className="bg-primary-yellow/20 text-primary-yellow text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded">50% off</span>
+                </div>
+
+                <div className="mt-6 space-y-3">
+                  {pricingFeatures.map((feat) => (
+                    <div key={feat} className="flex items-center gap-3 text-sm">
+                      <Check className="h-4 w-4 text-primary-yellow flex-shrink-0" />
+                      <span className="text-white/80">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8">
+                  <motion.div
+                    className="inline-block"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    animate={{ boxShadow: ["0 0 20px rgba(255,204,0,0.1)", "0 0 40px rgba(255,204,0,0.3)", "0 0 20px rgba(255,204,0,0.1)"] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <CheckoutButton className="h-14 bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
+                  </motion.div>
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-5 text-[10px] font-mono uppercase tracking-wider text-white/30">
+                  <div className="flex items-center gap-1.5">
+                    <Shield className="h-3.5 w-3.5" />
+                    <span>Secure Payment</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Lock className="h-3.5 w-3.5" />
+                    <span>Cancel Anytime</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="h-3.5 w-3.5" />
+                    <span>Instant Access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══ STATS BAR ═══ */}
-      <Section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item, index) => (
-            <motion.div
-              key={item.label}
-              className="comic-panel p-5 text-center"
-              initial={{ opacity: 0, y: 24, rotate: index % 2 === 0 ? -2 : 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -1 : 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ delay: index * 0.08, type: "spring", stiffness: 210, damping: 16 }}
-              whileHover={{ rotate: 0, scale: 1.05 }}
-            >
-              <span className="text-2xl">{item.icon}</span>
-              <p className="font-bangers text-5xl leading-none text-primary-yellow mt-1">
-                <Counter target={item.value} decimals={item.decimals ?? 0} suffix={item.suffix} />
-              </p>
-              <p className="mt-2 text-xs font-bold uppercase tracking-widest text-white/70">{item.label}</p>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      <div className="comic-divider" />
-
-      {/* ═══ HOW IT WORKS ═══ */}
-      <Section id="how" className="mx-auto max-w-7xl px-4 py-20 sm:px-6" delay={0.05}>
-        <h2 className="cmyk-text text-center text-5xl sm:text-6xl">How It Works</h2>
-        <p className="text-center mt-3 text-white/60 comic-accent">Three steps. Zero guesswork.</p>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {howItWorks.map((item, index) => (
-            <motion.div
-              key={item.title}
-              className="relative"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ type: "spring", stiffness: 200, damping: 18, delay: index * 0.12 }}
-            >
-              {/* Large step number */}
-              <span className="absolute -left-2 -top-8 font-bangers text-[5rem] leading-none text-primary-yellow/15 z-0 select-none">{item.step}</span>
-              <Card className="comic-panel chromatic-hover relative z-10 h-full overflow-hidden p-0">
-                <motion.div className="relative h-48 w-full overflow-hidden" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] via-transparent to-transparent" />
-                </motion.div>
-                <div className="p-5">
-                  <p className="font-bangers text-xs text-primary-yellow/60 tracking-widest">STEP {item.step}</p>
-                  <h3 className="mt-1 font-bangers text-3xl tracking-wide">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">{item.text}</p>
-                </div>
-                <ImpactStar className="-right-4 -top-4 h-14 w-14" label={item.burst} />
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      <div className="comic-divider" />
-
-      {/* ═══ FEATURES ═══ */}
-      <Section id="features" className="mx-auto max-w-7xl px-4 py-20 sm:px-6" delay={0.07}>
-        <h2 className="cmyk-text text-center text-5xl sm:text-6xl">The Arsenal</h2>
-        <p className="text-center mt-3 text-white/60 comic-accent">Quant rigor meets comic-book firepower.</p>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30, rotate: index === 1 ? 0 : index === 0 ? -2 : 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ type: "spring", stiffness: 220, damping: 16, delay: index * 0.1 }}
-            >
-              <Card className="comic-panel chromatic-hover group h-full overflow-hidden p-0">
-                <motion.div className="relative h-44 w-full overflow-hidden" whileHover={{ scale: 1.06 }} transition={{ duration: 0.35 }}>
-                  <Image src={feature.image} alt={feature.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] via-[#2b2b6b]/30 to-transparent" />
-                </motion.div>
-                <div className="p-5">
-                  <h3 className="font-bangers text-2xl tracking-wide text-primary-yellow">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">{feature.text}</p>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ═══ TESTIMONIALS ═══ */}
-      <Section className="mx-auto max-w-7xl px-4 py-16 sm:px-6" delay={0.08}>
-        <h2 className="cmyk-text text-center text-4xl sm:text-5xl">Voice of The Winners</h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ type: "spring", stiffness: 200, damping: 17, delay: index * 0.1 }}
-            >
-              <div className="speech-bubble h-full">
-                <p className="text-sm leading-relaxed italic text-white/90">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border-3 border-primary-yellow bg-primary-red font-bangers text-lg text-white">
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <p className="font-bangers text-base tracking-wide text-primary-yellow">{t.name}</p>
-                    <p className="text-xs text-white/50">{t.detail}</p>
-                  </div>
-                </div>
-                <div className="mt-2 flex gap-0.5 text-primary-yellow">
-                  {"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      <div className="comic-divider" />
-
-      {/* ═══ SAMPLE PICKS ═══ */}
-      <Section className="mx-auto max-w-5xl px-4 py-16 sm:px-6" delay={0.1}>
-        <Card className="comic-panel relative overflow-hidden p-0">
-          {/* Classified stamp overlay */}
-          <div className="absolute right-6 top-6 z-20 opacity-80">
-            <Image src="/classified-stamp.png" alt="Classified" width={120} height={120} className="drop-shadow-lg" />
-          </div>
-          <div className="p-8">
-            <h3 className="font-bangers text-4xl text-primary-yellow">Today&apos;s Picks</h3>
-            <p className="mt-1 text-sm text-white/50 comic-accent">Live card — updated 3pm ET daily</p>
-
-            <div className="mt-6 space-y-3">
-              {["BOS -3.5 vs MIA  |  Edge: 8.2  |  Confidence: HIGH", "DAL/PHX OVER 228.5  |  Edge: 7.6  |  Confidence: HIGH", "NYK ML + SAC +5.5 PARLAY  |  Edge: 9.1  |  Confidence: ELITE"].map((pick, i) => (
-                <div key={i} className="rounded-lg border-2 border-primary-yellow/30 bg-navy-light/80 px-4 py-3 text-sm blur-[4px] select-none">
-                  {pick}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 flex items-center gap-4">
-              <Lock className="h-5 w-5 text-primary-yellow" />
-              <p className="font-bangers text-lg tracking-wide">Unlock full card with membership</p>
-            </div>
-          </div>
-        </Card>
-      </Section>
-
-      {/* ═══ PRICING ═══ */}
-      <Section id="pricing" className="mx-auto max-w-4xl px-4 py-20 sm:px-6" delay={0.12}>
-        <h2 className="cmyk-text text-center text-5xl sm:text-6xl mb-10">Unlock The Arsenal</h2>
-
-        <div className="comic-panel relative overflow-hidden p-0">
-          {/* Glowing border effect */}
-          <div className="absolute inset-0 rounded-[14px] border-4 border-primary-yellow shadow-[0_0_30px_rgba(255,204,0,0.3)] pointer-events-none z-30" />
-          <div className="ben-day-overlay opacity-25" />
-
-          {/* Price burst */}
-          <motion.div
-            className="impact-burst absolute -right-6 -top-6 z-20 grid h-36 w-36 place-items-center border-[5px] border-primary-yellow bg-primary-yellow text-navy sm:h-44 sm:w-44"
-            animate={{ scale: [0.95, 1.06, 0.95], rotate: [-5, 5, -5] }}
-            transition={{ duration: 2.4, repeat: Infinity }}
-          >
-            <div className="text-center">
-              <span className="font-bangers text-3xl leading-none sm:text-4xl">$250</span>
-              <br />
-              <span className="comic-accent text-[10px] sm:text-xs font-bold">/MONTH</span>
-            </div>
-          </motion.div>
-
-          <div className="relative z-10 p-8 sm:p-10">
-            <p className="badge-red inline-block text-sm mb-3">🔥 MOST POPULAR</p>
-            <h3 className="font-bangers text-4xl leading-none tracking-wide sm:text-5xl text-white">Smack&apos;em Bets Pro</h3>
-            <p className="comic-accent mt-2 text-base text-white/60">Premium access to the Farrah AI picks engine</p>
-
-            {/* Strikethrough anchor */}
-            <div className="mt-4 flex items-center gap-3">
-              <span className="text-white/40 line-through text-xl font-bangers">$500/mo</span>
-              <span className="badge-yellow text-xs">50% OFF LAUNCH</span>
-            </div>
-
-            {/* Feature list */}
-            <div className="mt-6 grid gap-3">
-              {pricingFeatures.map((feat) => (
-                <div key={feat} className="flex items-center gap-3 text-sm sm:text-base">
-                  <Check className="h-5 w-5 text-primary-yellow flex-shrink-0" />
-                  <span>{feat}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8">
-              <motion.div
-                animate={{ boxShadow: ["0 0 20px rgba(255,204,0,0.2)", "0 0 40px rgba(255,204,0,0.5)", "0 0 20px rgba(255,204,0,0.2)"] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="inline-block rounded-xl"
-              >
-                <CheckoutButton className="h-16 border-3 border-primary-yellow bg-primary-red px-10 text-xl font-bold text-white font-bangers tracking-widest shadow-[6px_6px_0_rgba(0,0,0,0.4)] hover:bg-primary-yellow hover:text-navy transition-all" />
-              </motion.div>
-            </div>
-
-            {/* Trust signals */}
-            <div className="mt-6 flex flex-wrap items-center gap-6 text-xs text-white/50">
-              <div className="flex items-center gap-1.5">
-                <Shield className="h-4 w-4 text-primary-yellow" />
-                <span>Secure Stripe Payment</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Lock className="h-4 w-4 text-primary-yellow" />
-                <span>Cancel Anytime</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Image src="/guarantee-badge.png" alt="Guarantee" width={20} height={20} />
-                <span>Ironclad Guarantee</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       {/* ═══ FAQ ═══ */}
-      <Section id="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6" delay={0.14}>
-        <h2 className="cmyk-text text-center text-5xl sm:text-6xl">FAQ</h2>
-        <p className="text-center mt-3 text-white/50 comic-accent">Got questions? We got answers.</p>
-        <div className="mt-10 space-y-5">
-          {faqs.map((faq, index) => (
-            <FaqItem key={faq.question} question={faq.question} answer={faq.answer} index={index} />
-          ))}
-        </div>
-      </Section>
+      <section id="faq" className="max-w-2xl mx-auto px-6 py-16 sm:py-20">
+        <motion.div
+          className="text-center mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-bangers text-4xl sm:text-5xl tracking-wide text-white/90">Questions?</h2>
+        </motion.div>
+        {faqs.map((faq, index) => (
+          <FaqItem key={faq.question} question={faq.question} answer={faq.answer} index={index} />
+        ))}
+      </section>
 
       {/* ═══ FINAL CTA ═══ */}
-      <Section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 text-center" delay={0.15}>
-        <div className="comic-panel p-10">
-          <h2 className="font-bangers text-4xl sm:text-5xl text-primary-yellow">Ready to Smack The Sportsbooks?</h2>
-          <p className="mt-3 text-white/70 max-w-lg mx-auto">Join the bettors who stopped guessing and started winning with Farrah AI. Your first card drops at 3pm ET.</p>
-          <motion.div
-            className="mt-6 inline-block"
-            animate={{ scale: [1, 1.04, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      <motion.section
+        className="relative py-24 sm:py-32 text-center overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Split comparison bg */}
+        <div className="absolute inset-0 z-0 opacity-15">
+          <Image src="/split-compare.png" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d2b] via-[#0d0d2b]/80 to-[#0d0d2b] z-[1]" />
+
+        <div className="relative z-10 max-w-3xl mx-auto px-6">
+          <motion.h2
+            className="font-bangers text-4xl sm:text-6xl lg:text-7xl text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <CheckoutButton className="h-14 border-3 border-primary-yellow bg-primary-red px-10 text-lg font-bold text-white font-bangers tracking-widest shadow-[6px_6px_0_rgba(0,0,0,0.4)] hover:bg-primary-yellow hover:text-navy transition-all" />
+            Their Guesswork.
+            <br />
+            <span className="text-primary-yellow">Your Certainty.</span>
+          </motion.h2>
+
+          <motion.p
+            className="mt-5 text-white/50 text-lg max-w-md mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            Join the bettors who stopped gambling and started investing. Your first card drops at 3pm ET.
+          </motion.p>
+
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <CheckoutButton className="h-16 bg-primary-yellow text-navy font-bangers text-xl tracking-widest px-12 rounded-xl shadow-[5px_5px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
           </motion.div>
         </div>
-      </Section>
+      </motion.section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="mx-auto max-w-7xl border-t-4 border-primary-yellow/20 px-4 py-10 sm:px-6">
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Smack'em Bets" width={36} height={36} className="h-9 w-9 rounded-full border-2 border-primary-yellow/50" />
-            <p className="font-bangers text-lg tracking-wider text-white/70">Smack&apos;em Bets</p>
+      <footer className="border-t border-white/5 py-10 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <Image src="/logo.png" alt="Smack'em Bets" width={28} height={28} className="h-7 w-7 rounded-full border border-white/10" />
+            <span className="font-bangers text-sm tracking-wider text-white/40">Smack&apos;em Bets</span>
           </div>
-          <div className="text-center sm:text-right">
-            <p className="text-xs text-white/40">For entertainment purposes only. Not financial advice.</p>
-            <p className="text-xs text-white/40 mt-1">If you or someone you know has a gambling problem, call 1-800-GAMBLER.</p>
-            <p className="comic-accent text-xs text-white/30 mt-2">© {new Date().getFullYear()} Smack&apos;em Bets. All rights reserved.</p>
+          <div className="text-center sm:text-right text-[10px] text-white/20 font-mono space-y-1">
+            <p>For entertainment purposes only. Not financial advice.</p>
+            <p>Gambling problem? Call 1-800-GAMBLER.</p>
+            <p>© {new Date().getFullYear()} Smack&apos;em Bets</p>
           </div>
         </div>
       </footer>
+
+      {/* ═══ STICKY MOBILE CTA ═══ */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 p-3 bg-gradient-to-t from-[#0d0d2b] via-[#0d0d2b]/95 to-transparent sm:hidden">
+        <CheckoutButton className="w-full h-12 bg-primary-yellow text-navy font-bangers tracking-widest rounded-xl shadow-[0_-2px_20px_rgba(255,204,0,0.3)]" />
+      </div>
     </main>
   );
 }
