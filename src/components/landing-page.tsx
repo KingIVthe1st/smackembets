@@ -184,6 +184,12 @@ function ArsenalCard({ item, index }: { item: typeof arsenalSteps[0]; index: num
    ═══════════════════════════════════════════════════════════════ */
 export function LandingPage() {
   const heroRef = useRef<HTMLElement>(null);
+
+  // Force scroll to top on mount (prevents browser restoring scroll position)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroScale = useTransform(heroProgress, [0, 1], [1, 0.9]);
   const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
@@ -199,7 +205,7 @@ export function LandingPage() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <div className="mx-auto flex h-[64px] w-full max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-[80px] w-full max-w-7xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-2.5">
             <Image src="/logo.png" alt="Smack'em Bets" width={72} height={72} className="h-[72px] w-[72px] rounded-full border-2 border-primary-yellow/60 object-cover" />
             <span className="font-bangers text-3xl tracking-wider text-white/90">Smack&apos;em</span>
