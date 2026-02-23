@@ -236,7 +236,8 @@ export function LandingPage() {
           </motion.p>
 
           <motion.h1
-            className="cmyk-text text-[clamp(3rem,12vw,9rem)] leading-[0.82] font-extrabold tracking-tighter"
+            className="cmyk-text glitch-text text-[clamp(3.5rem,15vw,9rem)] leading-[0.82] font-extrabold tracking-tighter"
+            data-text="STOP GUESSING"
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
@@ -331,13 +332,21 @@ export function LandingPage() {
             ].map((item, i) => (
               <motion.div
                 key={item.label}
-                className="border-2 border-primary-red/30 rounded-xl p-5 bg-primary-red/5"
+                className="border-2 border-primary-red/30 rounded-xl p-5 bg-primary-red/5 cursor-default"
                 initial={{ opacity: 0, x: i === 0 ? -20 : i === 2 ? 20 : 0, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + i * 0.1 }}
+                whileHover={{ scale: 1.05, y: -4, borderColor: 'rgba(255, 50, 50, 0.6)' }}
               >
-                <item.icon className="h-6 w-6 text-primary-red/70 mx-auto" />
+                <motion.div
+                  initial={{ scale: 0, rotate: -45 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 10, delay: 0.5 + i * 0.1 }}
+                >
+                  <item.icon className="h-6 w-6 text-primary-red/70 mx-auto" />
+                </motion.div>
                 <p className="mt-2 font-bangers text-lg text-white/80">{item.label}</p>
                 <p className="text-xs text-white/40">{item.sub}</p>
               </motion.div>
@@ -370,25 +379,27 @@ export function LandingPage() {
           {stats.map((item, index) => (
             <motion.div
               key={item.label}
-              className="text-center"
+              className="text-center group cursor-default"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
             >
-              <span className="text-xl">{item.icon}</span>
+              <span className="text-xl inline-block transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12">{item.icon}</span>
               <p className="font-bangers text-4xl sm:text-5xl text-primary-yellow mt-1">
                 <Counter target={item.value} decimals={item.decimals ?? 0} suffix={item.suffix} />
               </p>
-              <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/40 mt-1">{item.label}</p>
+              <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/40 mt-1 transition-colors duration-300 group-hover:text-white/70">{item.label}</p>
             </motion.div>
           ))}
         </div>
       </motion.section>
 
       {/* ═══ ACT II: THE ARSENAL ═══ */}
-      <section id="arsenal" className="py-20 sm:py-28">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="arsenal" className="relative py-20 sm:py-28 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-[0.03] ben-day-animated" />
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
           <motion.div
             className="mb-14"
             initial={{ opacity: 0, y: 20 }}
@@ -432,9 +443,9 @@ export function LandingPage() {
                 whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 180, damping: 16, delay: index * 0.12 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                whileHover={{ y: -8, rotate: index === 0 ? -1 : index === 2 ? 1 : 0, transition: { duration: 0.25 } }}
               >
-                <div className="comic-panel p-6 h-full flex flex-col justify-between">
+                <div className="comic-panel p-6 h-full flex flex-col justify-between hover:shadow-[8px_8px_0_rgba(255,204,0,0.2)] transition-shadow duration-300">
                   {/* Win badge */}
                   <div className="absolute -right-2 -top-3">
                     <span className="bg-green-500 text-navy font-bangers text-sm px-3 py-1 rounded-full shadow-lg">{t.winAmount}</span>
@@ -487,7 +498,7 @@ export function LandingPage() {
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-green-400/70">Live — Updated 3pm ET</p>
               </div>
 
-              <div className="mt-5 space-y-3">
+              <div className="mt-5 space-y-3 group">
                 {[
                   { pick: "BOS -3.5 vs MIA", edge: "8.2", conf: "HIGH" },
                   { pick: "DAL/PHX OVER 228.5", edge: "7.6", conf: "HIGH" },
@@ -495,7 +506,7 @@ export function LandingPage() {
                 ].map((p, i) => (
                   <motion.div
                     key={i}
-                    className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 blur-[5px] select-none"
+                    className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 blur-[5px] select-none transition-all duration-500 group-hover:blur-[2px] group-hover:bg-white/[0.06]"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -574,14 +585,27 @@ export function LandingPage() {
                   <span className="bg-primary-yellow/20 text-primary-yellow text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded">50% off</span>
                 </div>
 
-                <div className="mt-6 space-y-3">
+                <motion.div
+                  className="mt-6 space-y-3"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ staggerChildren: 0.08 }}
+                >
                   {pricingFeatures.map((feat) => (
-                    <div key={feat} className="flex items-center gap-3 text-sm">
+                    <motion.div
+                      key={feat}
+                      className="flex items-center gap-3 text-sm"
+                      variants={{
+                        hidden: { opacity: 0, x: -20 },
+                        visible: { opacity: 1, x: 0 },
+                      }}
+                    >
                       <Check className="h-4 w-4 text-primary-yellow flex-shrink-0" />
                       <span className="text-white/80">{feat}</span>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
 
                 <div className="mt-8">
                   <motion.div
