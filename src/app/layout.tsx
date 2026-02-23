@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bangers, Inter, Permanent_Marker } from "next/font/google";
 import "@/app/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const bangers = Bangers({ subsets: ["latin"], weight: "400", variable: "--font-bangers" });
+const marker = Permanent_Marker({ subsets: ["latin"], weight: "400", variable: "--font-marker" });
 
 export const metadata: Metadata = {
-  title: "AI Sports Betting Pro",
-  description: "Premium AI sports picks delivered daily."
+  title: "Smack'em Bets",
+  description: "Premium AI sports picks by Farrah. 68.3% win rate across 835+ games."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${bangers.variable} ${marker.variable} ${inter.className}`}>{children}</body>
     </html>
   );
 }
