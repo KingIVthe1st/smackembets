@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import { AnimatePresence, animate, motion, useInView, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { Brain, Sparkles, TrendingUp, Zap, Shuffle, ChevronDown, Check, Shield, Lock, X, AlertTriangle } from "lucide-react";
+import { ChevronDown, Check, Shield, Lock, X, AlertTriangle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { CheckoutButton } from "@/components/checkout-button";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -150,53 +148,34 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HORIZONTAL SCROLL SECTION (The Arsenal)
+   ARSENAL CARD
    ═══════════════════════════════════════════════════════════════ */
-function HorizontalArsenal() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.66%"]);
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
+function ArsenalCard({ item, index }: { item: typeof arsenalSteps[0]; index: number }) {
+  const isEven = index % 2 === 0;
   return (
-    <div ref={containerRef} className="relative" style={{ height: "300vh" }}>
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-        {/* Section header */}
-        <div className="px-6 sm:px-10 mb-6">
-          <motion.p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</motion.p>
-          <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">The Arsenal</h2>
-          {/* Progress bar */}
-          <div className="mt-4 h-1 w-48 rounded-full bg-white/10 overflow-hidden">
-            <motion.div className="h-full bg-primary-yellow rounded-full" style={{ width: progressWidth }} />
-          </div>
-        </div>
-
-        {/* Horizontal panels */}
-        <motion.div className="flex gap-8 px-6 sm:px-10" style={{ x }}>
-          {arsenalSteps.map((item, index) => (
-            <div key={item.step} className="w-[85vw] sm:w-[70vw] lg:w-[45vw] flex-shrink-0">
-              <div className="comic-panel h-full overflow-hidden flex flex-col lg:flex-row">
-                {/* Image */}
-                <div className="relative h-56 lg:h-auto lg:w-1/2 overflow-hidden">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#2b2b6b]/80 hidden lg:block" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] to-transparent lg:hidden" />
-                  {/* Step number overlay */}
-                  <span className="absolute left-4 top-4 font-bangers text-[4rem] leading-none text-white/10">{item.step}</span>
-                </div>
-                {/* Content */}
-                <div className="p-6 lg:p-8 lg:w-1/2 flex flex-col justify-center">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-yellow/50">Module {item.step}</p>
-                  <h3 className="mt-2 font-bangers text-3xl lg:text-4xl tracking-wide text-white">{item.title}</h3>
-                  <p className="mt-1 text-sm font-semibold text-primary-yellow/80">{item.subtitle}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-white/60">{item.text}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
+    <motion.div
+      className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 overflow-hidden comic-panel`}
+      initial={{ opacity: 0, y: 40, x: isEven ? -30 : 30 }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ type: "spring", stiffness: 150, damping: 18, delay: index * 0.1 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+    >
+      {/* Image */}
+      <div className="relative h-56 sm:h-64 lg:h-auto lg:w-1/2 overflow-hidden group">
+        <Image src={item.image} alt={item.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+        <div className={`absolute inset-0 ${isEven ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-[#1a1a4e]/70 hidden lg:block`} />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a4e] to-transparent lg:hidden" />
+        <span className="absolute left-5 top-4 font-bangers text-[5rem] leading-none text-white/8 select-none">{item.step}</span>
       </div>
-    </div>
+      {/* Content */}
+      <div className="p-6 sm:p-8 lg:w-1/2 flex flex-col justify-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-yellow/50">Module {item.step}</p>
+        <h3 className="mt-2 font-bangers text-3xl lg:text-4xl tracking-wide text-white">{item.title}</h3>
+        <p className="mt-1 text-sm font-semibold text-primary-yellow/70">{item.subtitle}</p>
+        <p className="mt-4 text-sm leading-relaxed text-white/60">{item.text}</p>
+      </div>
+    </motion.div>
   );
 }
 
@@ -273,8 +252,8 @@ export function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            Our AI analyzes <span className="text-primary-yellow font-bold">37 data points per game</span> across 835+ matchups.
-            68.3% verified win rate. This is your unfair advantage.
+            The sportsbooks have armies of quants working against you.
+            Now you have <span className="text-primary-yellow font-bold">your own AI weapon.</span>
           </motion.p>
 
           <motion.div
@@ -313,7 +292,7 @@ export function LandingPage() {
 
       {/* ═══ ACT I: THE CHAOS (The Problem) ═══ */}
       <motion.section
-        className="relative py-24 sm:py-32 overflow-hidden"
+        className="relative py-20 sm:py-28 overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -407,39 +386,26 @@ export function LandingPage() {
         </div>
       </motion.section>
 
-      {/* ═══ ACT II: THE ARSENAL (Horizontal Scroll on Desktop, Stacked on Mobile) ═══ */}
-      <div id="arsenal" className="hidden lg:block">
-        <HorizontalArsenal />
-      </div>
+      {/* ═══ ACT II: THE ARSENAL ═══ */}
+      <section id="arsenal" className="py-20 sm:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            className="mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</p>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">The Arsenal</h2>
+            <p className="mt-3 text-white/40 max-w-lg text-sm leading-relaxed">Three proprietary modules working in concert. Each one gives you an edge. Together, they make you dangerous.</p>
+          </motion.div>
 
-      {/* Mobile: stacked cards */}
-      <section id="arsenal-mobile" className="lg:hidden py-20 px-6">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</p>
-        <h2 className="cmyk-text text-4xl sm:text-5xl mb-10">The Arsenal</h2>
-        <div className="space-y-6">
-          {arsenalSteps.map((item, index) => (
-            <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="comic-panel overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2b2b6b] to-transparent" />
-                  <span className="absolute left-4 top-3 font-bangers text-5xl text-white/10">{item.step}</span>
-                </div>
-                <div className="p-5">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-yellow/50">Module {item.step}</p>
-                  <h3 className="mt-1 font-bangers text-2xl tracking-wide">{item.title}</h3>
-                  <p className="mt-1 text-xs font-semibold text-primary-yellow/70">{item.subtitle}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">{item.text}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <div className="space-y-8">
+            {arsenalSteps.map((item, index) => (
+              <ArsenalCard key={item.step} item={item} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -497,7 +463,7 @@ export function LandingPage() {
 
       {/* ═══ ACT III: THE GLIMPSE (Sample Picks) ═══ */}
       <motion.section
-        className="relative py-20 sm:py-24"
+        className="relative py-20 sm:py-28"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.15 }}
@@ -512,7 +478,7 @@ export function LandingPage() {
           <div className="comic-panel relative overflow-hidden p-0">
             {/* Classified overlay */}
             <div className="absolute right-4 top-4 z-20">
-              <Image src="/classified-stamp.png" alt="Classified" width={100} height={100} className="opacity-70" />
+              <Image src="/classified-stamp.png" alt="Classified" width={80} height={80} className="opacity-60 sm:w-[100px] sm:h-[100px]" />
             </div>
 
             <div className="p-6 sm:p-8">
@@ -587,12 +553,12 @@ export function LandingPage() {
 
               {/* Price burst */}
               <motion.div
-                className="impact-burst absolute -right-4 -top-4 z-20 grid h-32 w-32 sm:h-40 sm:w-40 place-items-center border-[4px] border-primary-yellow bg-primary-yellow text-navy"
+                className="impact-burst absolute right-3 -top-3 z-20 grid h-24 w-24 sm:h-36 sm:w-36 place-items-center border-[4px] border-primary-yellow bg-primary-yellow text-navy"
                 animate={{ scale: [0.95, 1.06, 0.95], rotate: [-4, 4, -4] }}
                 transition={{ duration: 2.4, repeat: Infinity }}
               >
                 <div className="text-center">
-                  <span className="font-bangers text-2xl sm:text-3xl leading-none">$250</span>
+                  <span className="font-bangers text-xl sm:text-3xl leading-none">$250</span>
                   <br />
                   <span className="comic-accent text-[9px] sm:text-[10px] font-bold">/MONTH</span>
                 </div>
@@ -650,7 +616,7 @@ export function LandingPage() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section id="faq" className="max-w-2xl mx-auto px-6 py-16 sm:py-20">
+      <section id="faq" className="max-w-2xl mx-auto px-6 py-20 sm:py-28">
         <motion.div
           className="text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
@@ -658,7 +624,8 @@ export function LandingPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-bangers text-4xl sm:text-5xl tracking-wide text-white/90">Questions?</h2>
+          <h2 className="cmyk-text text-4xl sm:text-5xl">Got Questions?</h2>
+          <p className="mt-2 text-white/40 text-sm font-mono">We&apos;ve got answers.</p>
         </motion.div>
         {faqs.map((faq, index) => (
           <FaqItem key={faq.question} question={faq.question} answer={faq.answer} index={index} />
@@ -667,7 +634,7 @@ export function LandingPage() {
 
       {/* ═══ FINAL CTA ═══ */}
       <motion.section
-        className="relative py-24 sm:py-32 text-center overflow-hidden"
+        className="relative py-20 sm:py-28 text-center overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -717,7 +684,7 @@ export function LandingPage() {
       </motion.section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="border-t border-white/5 py-10 px-6">
+      <footer className="border-t border-white/5 py-10 px-6 pb-24 sm:pb-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <Image src="/logo.png" alt="Smack'em Bets" width={28} height={28} className="h-7 w-7 rounded-full border border-white/10" />
