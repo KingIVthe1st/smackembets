@@ -105,7 +105,7 @@ function ImpactStar({ className = "", label }: { className?: string; label: stri
   return (
     <motion.div
       aria-hidden="true"
-      className={`impact-burst absolute grid place-items-center border-[5px] border-comic-black bg-primary-yellow text-comic-black ${className}`}
+      className={`impact-burst absolute grid place-items-center border-[5px] border-primary-yellow bg-primary-yellow text-navy ${className}`}
       animate={{ scale: [0.96, 1.08, 0.96], rotate: [-8, 3, -8] }}
       transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
     >
@@ -151,7 +151,7 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
       onClick={() => setOpen((prev) => !prev)}
     >
       <div className="flex items-center justify-between gap-4">
-        <h4 className="font-bangers text-xl tracking-wide text-comic-black">{question}</h4>
+        <h4 className="font-bangers text-xl tracking-wide text-white">{question}</h4>
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown className="h-5 w-5" />
         </motion.span>
@@ -163,7 +163,7 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
             animate={{ height: "auto", opacity: 1, marginTop: 14 }}
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
             transition={{ duration: 0.28 }}
-            className="overflow-hidden text-sm leading-relaxed text-text-muted"
+            className="overflow-hidden text-sm leading-relaxed text-white/70"
           >
             {answer}
           </motion.p>
@@ -177,11 +177,11 @@ export function LandingPage() {
   const letters = "SMACK THE SPORTSBOOKS".split("");
 
   return (
-    <main className="relative overflow-hidden pb-10 text-comic-black">
-      <nav className="fixed left-0 top-0 z-50 w-full border-b-[5px] border-comic-black bg-primary-yellow/95 backdrop-blur-sm">
+    <main className="relative overflow-hidden pb-10 text-white">
+      <nav className="fixed left-0 top-0 z-50 w-full border-b-4 border-primary-yellow bg-[#12123a]/95 backdrop-blur-sm">
         <div className="mx-auto flex h-[82px] w-full max-w-7xl items-center justify-between px-4 sm:px-6">
           <a href="#top" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Smack'em Bets" width={50} height={50} className="h-12 w-12 rounded-full border-4 border-comic-black bg-white object-cover" />
+            <Image src="/logo.png" alt="Smack'em Bets" width={50} height={50} className="h-12 w-12 rounded-full border-4 border-primary-yellow bg-navy-light object-cover" />
             <div>
               <p className="font-bangers text-2xl leading-none tracking-wider">Smack&apos;em Bets</p>
               <p className="comic-accent text-xs">Farrah AI Picks</p>
@@ -193,7 +193,7 @@ export function LandingPage() {
             <a href="#pricing" className="chromatic-hover">Pricing</a>
             <a href="#faq" className="chromatic-hover">FAQ</a>
           </div>
-          <Button asChild className="border-4 border-comic-black bg-primary-red px-5 text-white shadow-[4px_4px_0_#0A0A0A] hover:bg-primary-blue">
+          <Button asChild className="border-3 border-primary-yellow bg-primary-red px-5 text-white font-bangers tracking-wider shadow-[4px_4px_0_rgba(0,0,0,0.4)] hover:bg-primary-blue">
             <a href="#pricing">Join Now</a>
           </Button>
         </div>
@@ -210,7 +210,7 @@ export function LandingPage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 text-center sm:px-6">
           <motion.p
-            className="comic-accent mx-auto inline-block rounded-full border-4 border-comic-black bg-primary-yellow px-5 py-1.5 text-sm"
+            className="comic-accent mx-auto inline-block rounded-full border-3 border-primary-yellow bg-primary-red px-5 text-white py-1.5 text-sm"
             initial={{ scale: 0.7, rotate: -7, opacity: 0 }}
             animate={{ scale: 1, rotate: -2, opacity: 1 }}
             transition={{ type: "spring", stiffness: 220, damping: 13 }}
@@ -237,7 +237,7 @@ export function LandingPage() {
           </motion.h1>
 
           <motion.p
-            className="mx-auto mt-6 max-w-2xl rounded-3xl border-[5px] border-comic-black bg-white/95 px-5 py-4 text-base leading-relaxed shadow-[8px_8px_0_#0A0A0A] sm:text-lg"
+            className="mx-auto mt-6 max-w-2xl rounded-3xl border-[5px] border-primary-yellow bg-[#2b2b6b]/90 px-5 py-4 text-base leading-relaxed shadow-[8px_8px_0_rgba(0,0,0,0.35)] sm:text-lg"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.65 }}
@@ -251,7 +251,7 @@ export function LandingPage() {
             transition={{ duration: 0.7, delay: 0.8 }}
             className="mt-8"
           >
-            <CheckoutButton className="mx-auto h-14 border-4 border-comic-black bg-primary-yellow px-9 text-lg font-bold text-comic-black shadow-[6px_6px_0_#0A0A0A] hover:bg-white" />
+            <CheckoutButton className="mx-auto h-14 border-3 border-primary-yellow bg-primary-red px-9 text-lg font-bold text-white font-bangers tracking-wider shadow-[6px_6px_0_rgba(0,0,0,0.35)] hover:bg-primary-blue" />
           </motion.div>
         </div>
       </section>
@@ -269,7 +269,7 @@ export function LandingPage() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ delay: index * 0.08, type: "spring", stiffness: 210, damping: 16 }}
             >
-              <p className="font-bangers text-5xl leading-none text-primary-red">
+              <p className="font-bangers text-5xl leading-none text-primary-yellow">
                 <Counter target={item.value} decimals={item.decimals ?? 0} suffix={item.suffix} />
               </p>
               <p className="mt-2 text-sm font-bold uppercase tracking-wider">{item.label}</p>
@@ -293,9 +293,9 @@ export function LandingPage() {
               transition={{ type: "spring", stiffness: 230, damping: 17, delay: index * 0.09 }}
             >
               <Card className="comic-panel chromatic-hover h-full p-6">
-                <p className="comic-accent text-sm text-primary-blue">Panel 0{index + 1}</p>
+                <p className="comic-accent text-sm text-primary-yellow/70">Panel 0{index + 1}</p>
                 <h3 className="mt-2 font-bangers text-3xl tracking-wide">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">{item.text}</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.text}</p>
                 <ImpactStar className="-right-5 -top-5 h-14 w-14" label={index === 0 ? "THWIP" : index === 1 ? "BAM" : "WIN"} />
               </Card>
             </motion.div>
@@ -310,7 +310,7 @@ export function LandingPage() {
             <p className="comic-accent mt-3 text-base">Quant rigor with comic-book energy.</p>
           </div>
           <div className="speech-bubble max-w-md">
-            <p className="comic-accent text-sm text-primary-blue">Coach says:</p>
+            <p className="comic-accent text-sm text-primary-yellow/80">Coach says:</p>
             <p className="mt-1 text-sm font-semibold">"Farrah doesn&apos;t chase hot takes. It hunts line value."</p>
           </div>
         </div>
@@ -325,12 +325,12 @@ export function LandingPage() {
               transition={{ type: "spring", stiffness: 230, damping: 16, delay: index * 0.1 }}
             >
               <Card className="comic-panel chromatic-hover h-full p-6">
-                <div className="inline-flex items-center gap-2 rounded-full border-4 border-comic-black bg-primary-yellow px-4 py-1">
+                <div className="inline-flex items-center gap-2 badge-yellow">
                   <feature.icon className="h-4 w-4" />
                   <span className="comic-accent text-xs">Farrah Module</span>
                 </div>
                 <h3 className="mt-4 font-bangers text-3xl leading-none">{feature.title}</h3>
-                <p className="mt-3 text-sm text-text-muted">{feature.text}</p>
+                <p className="mt-3 text-sm text-white/70">{feature.text}</p>
               </Card>
             </motion.div>
           ))}
@@ -339,11 +339,11 @@ export function LandingPage() {
 
       <Section className="mx-auto max-w-5xl px-4 py-12 sm:px-6" delay={0.1}>
         <Card className="comic-panel relative p-7">
-          <div className="absolute right-4 top-4 rounded-full border-4 border-comic-black bg-primary-red px-3 py-1 text-xs font-bold text-white">
+          <div className="absolute right-4 top-4 badge-red text-xs">
             PREVIEW
           </div>
           <h3 className="font-bangers text-4xl">Today&apos;s Sample Picks</h3>
-          <p className="mt-4 rounded-xl border-4 border-comic-black bg-white px-4 py-3 text-lg blur-[3px]">BOS -3.5 | DAL/PHX OVER 228.5 | NYK ML + SAC +5.5 PARLAY</p>
+          <p className="mt-4 rounded-xl border-3 border-primary-yellow/40 bg-navy-light px-4 py-3 text-lg blur-[3px]">BOS -3.5 | DAL/PHX OVER 228.5 | NYK ML + SAC +5.5 PARLAY</p>
           <div className="mt-3 flex items-center gap-2 text-sm font-semibold">
             <Sparkles className="h-4 w-4" />
             Full card unlocks with membership
@@ -355,7 +355,7 @@ export function LandingPage() {
         <div className="comic-panel relative overflow-hidden bg-primary-blue/95 p-8 text-white sm:p-10">
           <div className="ben-day-overlay opacity-35" />
           <motion.div
-            className="impact-burst absolute -right-10 -top-12 grid h-44 w-44 place-items-center border-[5px] border-comic-black bg-primary-yellow text-comic-black"
+            className="impact-burst absolute -right-10 -top-12 grid h-44 w-44 place-items-center border-[5px] border-primary-yellow bg-primary-yellow text-navy"
             animate={{ scale: [0.95, 1.05, 0.95], rotate: [-6, 6, -6] }}
             transition={{ duration: 2.4, repeat: Infinity }}
           >
@@ -373,7 +373,7 @@ export function LandingPage() {
           </div>
 
           <div className="mt-8">
-            <CheckoutButton className="h-14 border-4 border-comic-black bg-primary-yellow px-8 text-lg font-bold text-comic-black shadow-[6px_6px_0_#0A0A0A] hover:bg-white" />
+            <CheckoutButton className="h-14 border-3 border-primary-yellow bg-primary-red px-8 text-lg font-bold text-white font-bangers tracking-wider shadow-[6px_6px_0_rgba(0,0,0,0.35)] hover:bg-white hover:text-navy" />
           </div>
         </div>
       </Section>
@@ -387,7 +387,7 @@ export function LandingPage() {
         </div>
       </Section>
 
-      <footer className="mx-auto mt-10 max-w-7xl border-t-[5px] border-comic-black px-4 py-8 text-center sm:px-6">
+      <footer className="mx-auto mt-10 max-w-7xl border-t-4 border-primary-yellow/30 px-4 py-8 text-center sm:px-6">
         <p className="font-semibold">For entertainment purposes only. Not financial advice.</p>
         <p className="comic-accent mt-2">Copyright {new Date().getFullYear()} Smack&apos;em Bets</p>
       </footer>

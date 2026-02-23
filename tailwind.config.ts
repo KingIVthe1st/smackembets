@@ -20,6 +20,10 @@ const config: Config = {
           black: "#0A0A0A",
           paper: "#FFF9D9"
         },
+        navy: {
+          DEFAULT: "#1a1a4e",
+          light: "#2b2b6b"
+        },
         accent: {
           cyan: "#00FFFF",
           magenta: "#FF00FF",
