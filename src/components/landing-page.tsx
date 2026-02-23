@@ -236,17 +236,15 @@ export function LandingPage() {
           </motion.p>
 
           <motion.h1
-            className="cmyk-text glitch-text text-[clamp(2.8rem,11vw,6.5rem)] leading-[0.88] font-extrabold tracking-tighter"
+            className="cmyk-text text-[clamp(2.5rem,8vw,5.5rem)] leading-[1] font-extrabold tracking-tight"
             data-text="THE BOOKS USE AN AI. DO YOU?"
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            THE BOOKS
+            THE BOOKS USE AN AI.
             <br />
-            USE AN AI.
-            <br />
-            DO YOU?
+            <span className="text-primary-yellow">DO YOU?</span>
           </motion.h1>
 
           <motion.p
