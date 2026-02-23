@@ -22,21 +22,21 @@ const arsenalSteps = [
     step: "01",
     title: "The Quant Killer Engine",
     subtitle: "Finds the cracks in the sportsbook's armor.",
-    text: "Farrah checks 37 data points per game — stuff like travel schedules, ref tendencies, pace matchups, and player fatigue. She runs two AI models that have to AGREE before sending you anything. If the math doesn't scream \"take this bet,\" you never see it.",
+    text: "Farrah checks 37 data points per game: travel schedules, ref tendencies, pace matchups, and player fatigue. She runs two AI models that have to AGREE before sending you anything. If the math doesn't scream \"take this bet,\" you never see it.",
     image: "/feat-deeplearn.png"
   },
   {
     step: "02",
     title: "The Line Sniper",
     subtitle: "Beat the books to the punch.",
-    text: "Sportsbooks set odds based on public opinion. When everyone bets one side, the line moves — but sometimes the books are slow. Farrah spots those soft lines instantly and alerts you before they correct. That window is your money.",
+    text: "Sportsbooks set odds based on public opinion. When everyone bets one side, the line moves, but sometimes the books are slow. Farrah spots those soft lines instantly and alerts you before they correct. That window is your money.",
     image: "/feat-odds.png"
   },
   {
     step: "03",
     title: "The Smart Parlay Stacker",
     subtitle: "Engineer payouts, don't just pray for them.",
-    text: "Random parlays are lottery tickets. Farrah's are different — she finds picks that are statistically connected and stacks them into parlays where every leg has real edge. It's the difference between praying and engineering a payout.",
+    text: "Random parlays are lottery tickets. Farrah's are different. She finds picks that are statistically connected and stacks them into parlays where every leg has real edge. It's the difference between praying and engineering a payout.",
     image: "/feat-parlay.png"
   }
 ];
@@ -66,9 +66,9 @@ const testimonials = [
 ];
 
 const faqs = [
-  { question: "Who is Farrah?", answer: "Farrah isn't a person. It's our proprietary dual-model AI engine — the weapon we built to find weaknesses in sportsbook algorithms. It has no biases, no emotions, and only cares about one thing: finding a verifiable statistical edge." },
-  { question: "Is the 68.3% win rate real?", answer: "Yes. And we encourage you to track it. This isn't a cherry-picked number — it's our documented, long-term win rate across all games that met our strict 7.0+ edge threshold. We're in the business of data, not hype." },
-  { question: "$250/month seems steep.", answer: "Compared to what? Losing $500 on a bad Sunday? Paying another guru for coin-flip picks? Smack'em isn't a cost — it's an investment. The goal is for the AI to pay for itself in the first week." },
+  { question: "Who is Farrah?", answer: "Farrah isn't a person. It's our proprietary dual-model AI engine. The weapon we built to find weaknesses in sportsbook algorithms. It has no biases, no emotions, and only cares about one thing: finding a verifiable statistical edge." },
+  { question: "Is the 68.3% win rate real?", answer: "Yes. And we encourage you to track it. This isn't a cherry-picked number. It's our documented, long-term win rate across all games that met our strict 7.0+ edge threshold. We're in the business of data, not hype." },
+  { question: "$250/month seems steep.", answer: "Compared to what? Losing $500 on a bad Sunday? Paying another guru for coin-flip picks? Smack'em isn't a cost, it's an investment. The goal is for the AI to pay for itself in the first week." },
   { question: "What exactly do I get?", answer: "Instant access to the full arsenal. Every day at 3pm ET, you get the AI's complete card of high-edge picks. You get Live Odds Intel to snipe soft lines. And you get the AI Parlay Builder to stack the odds in your favor." },
   { question: "Can I cancel anytime?", answer: "One click. No friction. If you're not dominating, cancel from your dashboard instantly. We're confident you won't want to." }
 ];
@@ -78,7 +78,7 @@ const pricingFeatures = [
   "Full Live Odds Intel Access",
   "AI Parlay Builder",
   "Edge Score + Confidence Ratings",
-  "Cancel Anytime — Zero Friction"
+  "Cancel Anytime, Zero Friction"
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -334,7 +334,7 @@ export function LandingPage() {
             {[
               { icon: X, label: "Bleeding cash on \"expert\" picks", sub: "Twitter gurus selling dreams" },
               { icon: AlertTriangle, label: "Chasing losses with gut-feel parlays", sub: "Hope is not a strategy" },
-              { icon: X, label: "Coin-flip bets with zero edge", sub: "The house always wins — unless..." }
+              { icon: X, label: "Coin-flip bets with zero edge", sub: "The house always wins... unless" }
             ].map((item, i) => (
               <motion.div
                 key={item.label}
@@ -395,13 +395,13 @@ export function LandingPage() {
             className="comic-panel p-7 sm:p-10 space-y-5 text-sm sm:text-base leading-relaxed text-white/70"
           >
             <p>
-              Think the sportsbooks have it all figured out? They&rsquo;re smart, no doubt. They set lines that <em>look</em> unbeatable. But here&rsquo;s the thing — <span className="text-white font-bold">everyone is looking at the same basic stats.</span>
+              Think the sportsbooks have it all figured out? They&rsquo;re smart, no doubt. They set lines that <em>look</em> unbeatable. But here&rsquo;s the thing: <span className="text-white font-bold">everyone is looking at the same basic stats.</span>
             </p>
             <p>
               Farrah is like having <span className="text-primary-yellow font-bold">super-hearing at the world&rsquo;s biggest poker game.</span> She can&rsquo;t see the other guy&rsquo;s cards, but she hears all the little &ldquo;tells&rdquo; the books are too busy to notice. Things like how a star player&rsquo;s points drop 15% when he plays on a Tuesday, on the road, after a flight longer than 3 hours. Weird? Yes. Real? Absolutely.
             </p>
             <p>
-              She scans <span className="text-white font-semibold">thousands of these hidden patterns</span> — obscure stats, weird situational matchups, travel fatigue, referee tendencies — stuff most people never see. She doesn&rsquo;t predict the future. She just finds the cracks in the armor. She pinpoints bets where <span className="text-primary-yellow font-semibold">the odds are just plain wrong</span> based on what the data actually shows.
+              She scans <span className="text-white font-semibold">thousands of these hidden patterns</span>: obscure stats, weird situational matchups, travel fatigue, referee tendencies. Stuff most people never see. She doesn&rsquo;t predict the future. She just finds the cracks in the armor. She pinpoints bets where <span className="text-primary-yellow font-semibold">the odds are just plain wrong</span> based on what the data actually shows.
             </p>
             <p className="text-primary-yellow font-bangers text-xl sm:text-2xl tracking-wide pt-2 border-t border-primary-yellow/10">
               It&rsquo;s not magic. It&rsquo;s a goddamn information advantage. 🕷️
@@ -457,7 +457,7 @@ export function LandingPage() {
                 </div>
                 <div className="flex justify-between pb-2 text-white/50">
                   <span>Result:</span>
-                  <span className="text-primary-yellow font-bangers text-lg">✅ 22 PTS — CASHED</span>
+                  <span className="text-primary-yellow font-bangers text-lg">✅ 22 PTS. CASHED</span>
                 </div>
               </div>
             </div>
@@ -594,7 +594,7 @@ export function LandingPage() {
             <div className="p-6 sm:p-8">
               <div className="flex items-center gap-2 mb-1">
                 <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-green-400/70">Live — Updated 3pm ET</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-green-400/70">Live | Updated 3pm ET</p>
               </div>
 
               <div className="mt-5 space-y-3 group">
@@ -651,7 +651,7 @@ export function LandingPage() {
                 "You know there's a smarter way to bet, but you don't have time to become a data scientist",
                 "You love finding those weird, under-the-radar picks no one's talking about",
                 "You want to feel like you've got a secret weapon every time you open your betting app",
-                "You treat betting like a sharp, fun challenge — not a get-rich-quick scheme",
+                "You treat betting like a sharp, fun challenge, not a get-rich-quick scheme",
                 "You'd rather build your bankroll with smart, consistent wins than chase losing lottery parlays",
               ].map((item, i) => (
                 <motion.div
