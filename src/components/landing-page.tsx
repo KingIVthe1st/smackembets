@@ -14,29 +14,29 @@ const stats = [
   { value: 835, suffix: "+", label: "Games Analyzed" },
   { value: 68.3, suffix: "%", label: "Win Rate", decimals: 1 },
   { value: 37, suffix: "", label: "Data Points / Game" },
-  { value: 7.0, suffix: "+", label: "Edge Threshold", decimals: 1 }
+  { value: 7.0, suffix: "+", label: "Confidence Cutoff", decimals: 1 }
 ];
 
 const arsenalSteps = [
   {
     step: "01",
-    title: "The Quant Killer Engine",
-    subtitle: "Finds the cracks in the sportsbook's armor.",
-    text: "Farrah checks 37 data points per game: travel schedules, ref tendencies, pace matchups, and player fatigue. She runs two AI models that have to AGREE before sending you anything. If the math doesn't scream \"take this bet,\" you never see it.",
+    title: "The Pick Finder",
+    subtitle: "She does the homework so you don't have to.",
+    text: "Farrah looks at 37 things per game that most people miss — like how tired a team is from traveling, which refs call more fouls, and how players do in certain matchups. She only sends you a pick when TWO separate AI brains both agree it's a winner. No agreement? You don't see it.",
     image: "/feat-deeplearn.png"
   },
   {
     step: "02",
-    title: "The Line Sniper",
-    subtitle: "Beat the books to the punch.",
-    text: "Sportsbooks set odds based on public opinion. When everyone bets one side, the line moves, but sometimes the books are slow. Farrah spots those soft lines instantly and alerts you before they correct. That window is your money.",
+    title: "The Line Finder",
+    subtitle: "Catch the good odds before they disappear.",
+    text: "Sportsbooks set their odds based on what most people are betting. Sometimes they get it wrong. Farrah catches those mistakes fast and tells you before the odds change. That little window? That's where smart money is made.",
     image: "/feat-odds.png"
   },
   {
     step: "03",
-    title: "The Smart Parlay Stacker",
-    subtitle: "Engineer payouts, don't just pray for them.",
-    text: "Random parlays are lottery tickets. Farrah's are different. She finds picks that are statistically connected and stacks them into parlays where every leg has real edge. It's the difference between praying and engineering a payout.",
+    title: "The Parlay Builder",
+    subtitle: "Stack smarter bets, not random ones.",
+    text: "Most parlays are just throwing darts and hoping. Farrah's parlays are different — she picks bets that actually go well together based on the data. Think of it like this: instead of buying random lottery tickets, you're playing with loaded dice.",
     image: "/feat-parlay.png"
   }
 ];
@@ -66,19 +66,19 @@ const testimonials = [
 ];
 
 const faqs = [
-  { question: "Who is Farrah?", answer: "Farrah isn't a person. It's our proprietary dual-model AI engine. The weapon we built to find weaknesses in sportsbook algorithms. It has no biases, no emotions, and only cares about one thing: finding a verifiable statistical edge." },
-  { question: "Is the 68.3% win rate real?", answer: "Yes. And we encourage you to track it. This isn't a cherry-picked number. It's our documented, long-term win rate across all games that met our strict 7.0+ edge threshold. We're in the business of data, not hype." },
-  { question: "$250/month seems steep.", answer: "Compared to what? Losing $500 on a bad Sunday? Paying another guru for coin-flip picks? Smack'em isn't a cost, it's an investment. The goal is for the AI to pay for itself in the first week." },
-  { question: "What exactly do I get?", answer: "Instant access to the full arsenal. Every day at 3pm ET, you get the AI's complete card of high-edge picks. You get Live Odds Intel to snipe soft lines. And you get the AI Parlay Builder to stack the odds in your favor." },
-  { question: "Can I cancel anytime?", answer: "One click. No friction. If you're not dominating, cancel from your dashboard instantly. We're confident you won't want to." }
+  { question: "Who is Farrah?", answer: "Farrah is our AI. Not a person — a computer brain we built that watches sports 24/7. She has no favorite teams, no gut feelings, no emotions. She just looks at the numbers and tells you which bets look good. That's it." },
+  { question: "Is the 68.3% win rate real?", answer: "100% real. We track every single pick. That number comes from 835+ games where the AI was confident enough to recommend a bet. We're not cherry-picking wins — that's the real, full record. Track it yourself if you want." },
+  { question: "Is $97/month worth it?", answer: "Think about it this way — one good bet can cover the whole month. Most people lose way more than $97 betting on gut feelings or following random people on Twitter. This pays for itself fast." },
+  { question: "What exactly do I get?", answer: "Every day at 3pm ET, you get the AI's best picks for that day. Each pick comes with a confidence score so you know how sure the AI is. You also get a parlay builder that puts together smart combos, and alerts when the odds are in your favor." },
+  { question: "Can I cancel anytime?", answer: "Yep. One click, done. No phone calls, no hoops to jump through. If it's not working for you, cancel right from your dashboard. Easy." }
 ];
 
 const pricingFeatures = [
-  "Daily AI-Powered Picks (3pm ET)",
-  "Full Live Odds Intel Access",
+  "Daily AI Picks Sent at 3pm ET",
+  "Live Odds Alerts (Catch the Best Lines)",
   "AI Parlay Builder",
-  "Edge Score + Confidence Ratings",
-  "Cancel Anytime, Zero Friction"
+  "Confidence Score on Every Pick",
+  "Cancel Anytime — One Click"
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -238,7 +238,7 @@ export function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            AI-Powered Betting Weaponry
+            AI-Powered Sports Picks
           </motion.p>
 
           <motion.h1
@@ -259,8 +259,8 @@ export function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            They weaponized data to build their lines.
-            We built a weapon to <span className="text-primary-yellow font-bold">break them.</span>
+            Sportsbooks use computers to set the odds against you.
+            Now you&apos;ve got one that <span className="text-primary-yellow font-bold">fights back.</span>
           </motion.p>
 
           <motion.div
@@ -276,7 +276,7 @@ export function LandingPage() {
               <CheckoutButton className="h-14 bg-primary-yellow text-navy font-bangers text-lg tracking-widest px-10 rounded-xl shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:bg-white transition-all" />
             </motion.div>
             <a href="#arsenal" className="text-sm text-white font-bangers tracking-wider bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all">
-              See The AI&apos;s Arsenal ↓
+              See How It Works ↓
             </a>
           </motion.div>
         </motion.div>
@@ -332,9 +332,9 @@ export function LandingPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {[
-              { icon: X, label: "Bleeding cash on \"expert\" picks", sub: "Twitter gurus selling dreams" },
-              { icon: AlertTriangle, label: "Chasing losses with gut-feel parlays", sub: "Hope is not a strategy" },
-              { icon: X, label: "Coin-flip bets with zero edge", sub: "The house always wins... unless" }
+              { icon: X, label: "Losing money on \"expert\" picks", sub: "Twitter gurus who guess just like you" },
+              { icon: AlertTriangle, label: "Chasing losses with random parlays", sub: "Hope is not a game plan" },
+              { icon: X, label: "Betting on gut feelings", sub: "The sportsbook loves when you do this" }
             ].map((item, i) => (
               <motion.div
                 key={item.label}
@@ -366,9 +366,9 @@ export function LandingPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            The books aren&apos;t just lucky. They&apos;re deploying armies of quants against you. You&apos;re using hope.
+            Sportsbooks have teams of math nerds setting odds against you. You&apos;re betting on feelings.
             <br />
-            <span className="text-primary-yellow font-bold mt-2 inline-block">It&apos;s time to fight fire with fire.</span>
+            <span className="text-primary-yellow font-bold mt-2 inline-block">Time to level the playing field.</span>
           </motion.p>
         </div>
       </motion.section>
@@ -395,16 +395,16 @@ export function LandingPage() {
             className="comic-panel p-7 sm:p-10 space-y-5 text-sm sm:text-base leading-relaxed text-white/70"
           >
             <p>
-              Think the sportsbooks have it all figured out? They&rsquo;re smart, no doubt. They set lines that <em>look</em> unbeatable. But here&rsquo;s the thing: <span className="text-white font-bold">everyone is looking at the same basic stats.</span>
+              Sportsbooks are smart. They set odds that <em>look</em> impossible to beat. But here&rsquo;s the secret: <span className="text-white font-bold">they&rsquo;re using the same basic stats everyone sees.</span>
             </p>
             <p>
-              Farrah is like having <span className="text-primary-yellow font-bold">super-hearing at the world&rsquo;s biggest poker game.</span> She can&rsquo;t see the other guy&rsquo;s cards, but she hears all the little &ldquo;tells&rdquo; the books are too busy to notice. Things like how a star player&rsquo;s points drop 15% when he plays on a Tuesday, on the road, after a flight longer than 3 hours. Weird? Yes. Real? Absolutely.
+              Farrah goes deeper. Way deeper. She looks at stuff nobody else is checking — like how a player scores way less when he&rsquo;s on the road after a long flight. Or how certain refs call games differently. <span className="text-primary-yellow font-bold">Weird little patterns that actually matter.</span>
             </p>
             <p>
-              She scans <span className="text-white font-semibold">thousands of these hidden patterns</span>: obscure stats, weird situational matchups, travel fatigue, referee tendencies. Stuff most people never see. She doesn&rsquo;t predict the future. She just finds the cracks in the armor. She pinpoints bets where <span className="text-primary-yellow font-semibold">the odds are just plain wrong</span> based on what the data actually shows.
+              She checks <span className="text-white font-semibold">thousands of these hidden details</span> for every game. She&rsquo;s not trying to predict the future. She&rsquo;s just finding bets where <span className="text-primary-yellow font-semibold">the sportsbook got the odds wrong</span> — and those are the ones she sends to you.
             </p>
             <p className="text-primary-yellow font-bangers text-xl sm:text-2xl tracking-wide pt-2 border-t border-primary-yellow/10">
-              It&rsquo;s not magic. It&rsquo;s a cold, calculated information advantage. 🕷️
+              It&rsquo;s not magic. It&rsquo;s just better homework. 🕷️
             </p>
           </motion.div>
 
@@ -422,13 +422,13 @@ export function LandingPage() {
             </div>
             <div className="space-y-4 text-sm sm:text-base leading-relaxed text-white/70">
               <p>
-                Remember that Celtics vs. Bucks game? Jayson Tatum was on an absolute tear, dropping 30+ points like nothing. The public was <span className="text-primary-red font-semibold">hammering the OVER</span> on his points prop at 29.5. It looked like free money.
+                Celtics vs. Bucks. Jayson Tatum had been on fire — scoring 30+ easy. Everyone was betting he&rsquo;d score <span className="text-primary-red font-semibold">over 29.5 points</span>. Seemed like easy money, right?
               </p>
               <p className="text-primary-yellow font-bold text-lg">
-                But Farrah screamed &ldquo;Hold up.&rdquo; 🛑
+                But Farrah said &ldquo;Nope.&rdquo; 🛑
               </p>
               <p>
-                She flagged that the public was ignoring a perfect storm: Tatum&rsquo;s scoring efficiency <em>tanks</em> against a top-3 defense on the second night of a back-to-back. Plus, the specific ref for that game calls 20% fewer shooting fouls on the road team. All the hype was on Tatum&rsquo;s hot streak, but the hidden numbers pointed to a grinder.
+                She noticed things everyone else missed: Tatum always scores less against great defenses when his team played the night before (tired legs). Plus, the ref assigned to that game calls fewer fouls on away teams. Everyone was hyped about Tatum&rsquo;s hot streak, but the hidden numbers said &ldquo;slow night.&rdquo;
               </p>
             </div>
             <div className="mt-6 grid sm:grid-cols-2 gap-4">
@@ -506,9 +506,9 @@ export function LandingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">The Weapon System</p>
-            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Your New Arsenal</h2>
-            <p className="mt-3 text-white/40 max-w-lg text-sm leading-relaxed">Three proprietary weapons working in concert. Each one gives you an edge the books can&apos;t see. Together, they make you dangerous.</p>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">What You Get</p>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Your New Toolkit</h2>
+            <p className="mt-3 text-white/40 max-w-lg text-sm leading-relaxed">Three tools working together to find you winning bets. Each one spots things the sportsbooks miss. Together, they give you a real advantage.</p>
           </motion.div>
 
           <div className="space-y-8">
@@ -622,7 +622,7 @@ export function LandingPage() {
 
               <div className="mt-8 text-center">
                 <Lock className="h-5 w-5 text-primary-yellow/50 mx-auto mb-2" />
-                <p className="font-bangers text-lg tracking-wide text-white/60">Full card &amp; edge scores unlock instantly</p>
+                <p className="font-bangers text-lg tracking-wide text-white/60">Full picks &amp; confidence scores unlock instantly</p>
                 <motion.div className="mt-4" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <a href="#pricing" className="inline-block bg-primary-yellow/20 border-2 border-primary-yellow/50 text-primary-yellow font-bangers tracking-wider px-7 py-3 rounded-lg hover:bg-primary-yellow/30 transition-all text-base">
                     Unlock Today&apos;s Card →
@@ -647,12 +647,12 @@ export function LandingPage() {
             <h3 className="font-bangers text-3xl sm:text-4xl tracking-wide mb-6">Is This For You? 🤔</h3>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
-                "You're tired of losing because of last-second bad beats and boneheaded gut feelings",
-                "You know there's a smarter way to bet, but you don't have time to become a data scientist",
-                "You love finding those weird, under-the-radar picks no one's talking about",
-                "You want to feel like you've got a secret weapon every time you open your betting app",
-                "You treat betting like a sharp, fun challenge, not a get-rich-quick scheme",
-                "You'd rather build your bankroll with smart, consistent wins than chase losing lottery parlays",
+                "You're tired of losing bets and want to try something that actually works",
+                "You know there's a smarter way to bet but don't have time to research every game",
+                "You like finding picks that most people aren't even thinking about",
+                "You want to feel confident when you place a bet instead of just hoping",
+                "You see betting as a fun hobby and want to get better at it",
+                "You'd rather win steady than keep chasing big parlays that never hit",
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -668,7 +668,7 @@ export function LandingPage() {
               ))}
             </div>
             <p className="mt-6 text-xs text-white/30 italic border-t border-white/5 pt-4">
-              <span className="text-primary-red font-semibold">Not for you?</span> If you&rsquo;re looking for &ldquo;100% guaranteed locks,&rdquo; go follow some dude on Twitter who rents Lamborghinis. We don&rsquo;t sell magic beans. We sell a statistical edge.
+              <span className="text-primary-red font-semibold">Not for you?</span> If you want &ldquo;guaranteed winners every time,&rdquo; this ain&rsquo;t it. Nobody can promise that. What we CAN do is give you way better odds than betting on your own.
             </p>
           </motion.div>
         </div>
@@ -684,8 +684,8 @@ export function LandingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Your Unfair Advantage Awaits</p>
-            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Your ROI Starts Today.</h2>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-yellow/60 mb-2">Ready to Win More?</p>
+            <h2 className="cmyk-text text-4xl sm:text-6xl lg:text-7xl">Start Winning Today.</h2>
           </motion.div>
 
           <motion.div
@@ -708,7 +708,7 @@ export function LandingPage() {
                 transition={{ duration: 2.4, repeat: Infinity }}
               >
                 <div className="text-center">
-                  <span className="font-bangers text-xl sm:text-3xl leading-none">$250</span>
+                  <span className="font-bangers text-xl sm:text-3xl leading-none">$97</span>
                   <br />
                   <span className="comic-accent text-[9px] sm:text-[10px] font-bold">/MONTH</span>
                 </div>
@@ -717,11 +717,11 @@ export function LandingPage() {
               <div className="relative z-10 p-8 sm:p-10">
                 <span className="inline-block bg-primary-red text-white font-bangers text-xs tracking-wider px-3 py-1 rounded-full mb-4">🔥 LIMITED LAUNCH PRICING</span>
                 <h3 className="font-bangers text-3xl sm:text-4xl tracking-wide">Smack&apos;em Bets Pro</h3>
-                <p className="text-sm text-white/50 mt-1 font-mono">This isn&apos;t a cost. It&apos;s an investment in a statistical weapon.</p>
+                <p className="text-sm text-white/50 mt-1 font-mono">One good bet pays for the whole month. Think about that.</p>
 
                 <div className="mt-4 flex items-center gap-3">
-                  <span className="text-white/30 line-through text-lg font-bangers">$500/mo</span>
-                  <span className="bg-primary-yellow/20 text-primary-yellow text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded">50% off</span>
+                  <span className="text-white/30 line-through text-lg font-bangers">$197/mo</span>
+                  <span className="bg-primary-yellow/20 text-primary-yellow text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded">Half off</span>
                 </div>
 
                 <motion.div
@@ -761,7 +761,7 @@ export function LandingPage() {
                 {/* No BS Guarantee */}
                 <div className="mt-6 p-4 rounded-xl border-2 border-primary-yellow/20 bg-primary-yellow/[0.04] text-center">
                   <p className="font-bangers text-lg text-primary-yellow tracking-wide">🛡️ The No B.S. Guarantee</p>
-                  <p className="text-xs text-white/40 mt-1">Give us 30 days. If you don&rsquo;t feel like you have an unfair advantage, we&rsquo;ll refund your subscription. No hard feelings.</p>
+                  <p className="text-xs text-white/40 mt-1">Try it for 30 days. If you don&rsquo;t feel like you&rsquo;re winning more, we&rsquo;ll give you your money back. Simple as that.</p>
                 </div>
 
                 <div className="mt-5 flex flex-wrap items-center justify-center sm:justify-start gap-5 text-[10px] font-mono uppercase tracking-wider text-white/30">
@@ -835,7 +835,7 @@ export function LandingPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Keep relying on luck and Twitter &ldquo;experts,&rdquo; or arm yourself with a real statistical weapon. Your first AI-vetted card is waiting.
+            You can keep guessing. Or you can let the AI do the homework. Your first picks are waiting.
           </motion.p>
 
           <motion.div

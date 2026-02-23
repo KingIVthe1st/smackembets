@@ -19,7 +19,7 @@ export function CheckoutButton({ className }: { className?: string }) {
 
   return (
     <Button className={className} size="lg" onClick={handleCheckout} disabled={loading}>
-      {loading ? "Redirecting..." : "Join Smack'em Bets - $250/month"}
+      {loading ? "Redirecting..." : "Join Smack'em Bets - $97/month"}
     </Button>
   );
 }
