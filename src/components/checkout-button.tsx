@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export function CheckoutButton({ className }: { className?: string }) {
+export function CheckoutButton({ className, label = "Start Winning - $250/mo" }: { className?: string; label?: string }) {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -19,7 +19,7 @@ export function CheckoutButton({ className }: { className?: string }) {
 
   return (
     <Button className={className} size="lg" onClick={handleCheckout} disabled={loading}>
-      {loading ? "Redirecting..." : "Join Smack'em Bets - $97/month"}
+      {loading ? "Redirecting..." : label}
     </Button>
   );
 }
